@@ -289,18 +289,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.4</span> ヒストグラム<a href="summarization.html#ヒストグラム" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>図によってデータの分布を確認するには，<strong>ヒストグラム</strong>を用いるのが便利です．ヒストグラムを作図するには<code>hist()</code>関数を用います．</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="summarization.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mydata<span class="sc">$</span>salary)</span></code></pre></div>
-<p><img src="_book6_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="docs_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p><code>hist()</code>関数には複数の引数があり，それらを指定することで見た目を変えることができます．</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="summarization.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mydata<span class="sc">$</span>salary, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of Salary&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Salary&quot;</span>)</span></code></pre></div>
-<p><img src="_book6_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="docs_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="散布図" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> 散布図<a href="summarization.html#散布図" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>2つの変数の関係を図で確認するためには，<strong>散布図</strong>を用いるのが便利です．散布図を作成するには<code>plot()</code>関数を使います．今わたしたちは，教育と年収の関係性に関心があるとしましょう．<code>educ</code>と年収<code>salary</code>の関係を次のように図示できます．</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="summarization.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mydata<span class="sc">$</span>educ, mydata<span class="sc">$</span>salary, <span class="at">main =</span> <span class="st">&quot;Salary and Education&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Years of Education&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Salary&quot;</span>)</span></code></pre></div>
-<p><img src="_book6_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="docs_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-32" class="exercise"><strong>Exercise 2.1  </strong></span>次のことを考えてみてください．</p>
+<p><span id="exr:unnamed-chunk-31" class="exercise"><strong>Exercise 2.1  </strong></span>次のことを考えてみてください．</p>
 <ol style="list-style-type: decimal">
 <li>どのような関係が見て取れますか？</li>
 <li>そのような関係はどのようなメカニズム生じるのでしょうか？</li>
@@ -316,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="summarization.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(mydata<span class="sc">$</span>educ, mydata<span class="sc">$</span>salary)</span>
 <span id="cb23-2"><a href="summarization.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.5771089</span></span></code></pre></div>
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-34" class="exercise"><strong>Exercise 2.2  </strong></span><code>wage.csv</code>のデータについて，次の指示に従ってください．</p>
+<p><span id="exr:unnamed-chunk-33" class="exercise"><strong>Exercise 2.2  </strong></span><code>wage.csv</code>のデータについて，次の指示に従ってください．</p>
 <ol style="list-style-type: decimal">
 <li>年齢(<code>age</code>)の平均，分散，標準偏差を求めてください．また，<code>age</code>のヒストグラムを作成してください．</li>
 <li>年齢(<code>age</code>)と年収(<code>salary</code>)の散布図を描いて，さらに相関係数を求めてください．</li>
