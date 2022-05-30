@@ -1,0 +1,5 @@
+book_filename: "_book6"
+language:
+  ui:
+    chapter_name: "チャプター"
+delete_merged_file: true

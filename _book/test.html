@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>チャプター4 統計的仮説検定 | 『Rによる原因を推論する』</title>
+  <meta name="description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="チャプター4 統計的仮説検定 | 『Rによる原因を推論する』" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/gennin.png" />
+  <meta property="og:description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="github-repo" content="https://github.com/ritsu1997/genninsuiron" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="チャプター4 統計的仮説検定 | 『Rによる原因を推論する』" />
+  
+  <meta name="twitter:description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="twitter:image" content="/gennin.png" />
+
+<meta name="author" content="北川 梨津，原 健人" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gennin.png" />
+  <link rel="shortcut icon" href="gennin.png" type="image/x-icon" />
+<link rel="prev" href="regression.html"/>
+<link rel="next" href="regtech.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">『Rによる原因を推論する』</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>久米ゼミにようこそ！</a></li>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html"><i class="fa fa-check"></i>はじめる前に</a>
+<ul>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html#おことわり"><i class="fa fa-check"></i>おことわり</a></li>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html#著者について"><i class="fa fa-check"></i>著者について</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#r言語とは"><i class="fa fa-check"></i><b>1.1</b> R言語とは</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#rstudioとは"><i class="fa fa-check"></i><b>1.2</b> RStudioとは</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#四則演算"><i class="fa fa-check"></i><b>1.3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#文字列"><i class="fa fa-check"></i><b>1.3.2</b> 文字列</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#割り当て演算"><i class="fa fa-check"></i><b>1.3.3</b> 割り当て演算</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#ベクトル"><i class="fa fa-check"></i><b>1.3.4</b> ベクトル</a></li>
+<li class="chapter" data-level="1.3.5" data-path="intro.html"><a href="intro.html#ベクトルの演算"><i class="fa fa-check"></i><b>1.3.5</b> ベクトルの演算</a></li>
+<li class="chapter" data-level="1.3.6" data-path="intro.html"><a href="intro.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.3.6</b> csvファイルの読み込み</a></li>
+<li class="chapter" data-level="1.3.7" data-path="intro.html"><a href="intro.html#サブセッティング"><i class="fa fa-check"></i><b>1.3.7</b> サブセッティング</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="summarization.html"><a href="summarization.html"><i class="fa fa-check"></i><b>2</b> データを要約する</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="summarization.html"><a href="summarization.html#平均値"><i class="fa fa-check"></i><b>2.1</b> 平均値</a></li>
+<li class="chapter" data-level="2.2" data-path="summarization.html"><a href="summarization.html#分散"><i class="fa fa-check"></i><b>2.2</b> 分散</a></li>
+<li class="chapter" data-level="2.3" data-path="summarization.html"><a href="summarization.html#標準偏差"><i class="fa fa-check"></i><b>2.3</b> 標準偏差</a></li>
+<li class="chapter" data-level="2.4" data-path="summarization.html"><a href="summarization.html#ヒストグラム"><i class="fa fa-check"></i><b>2.4</b> ヒストグラム</a></li>
+<li class="chapter" data-level="2.5" data-path="summarization.html"><a href="summarization.html#散布図"><i class="fa fa-check"></i><b>2.5</b> 散布図</a></li>
+<li class="chapter" data-level="2.6" data-path="summarization.html"><a href="summarization.html#相関係数"><i class="fa fa-check"></i><b>2.6</b> 相関係数</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>3</b> 回帰分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regression.html"><a href="regression.html#回帰分析とは"><i class="fa fa-check"></i><b>3.1</b> 回帰分析とは</a></li>
+<li class="chapter" data-level="3.2" data-path="regression.html"><a href="regression.html#単回帰分析"><i class="fa fa-check"></i><b>3.2</b> 単回帰分析</a></li>
+<li class="chapter" data-level="3.3" data-path="regression.html"><a href="regression.html#最小二乗法"><i class="fa fa-check"></i><b>3.3</b> 最小二乗法</a></li>
+<li class="chapter" data-level="3.4" data-path="regression.html"><a href="regression.html#重回帰分析"><i class="fa fa-check"></i><b>3.4</b> 重回帰分析</a></li>
+<li class="chapter" data-level="3.5" data-path="regression.html"><a href="regression.html#回帰分析と因果推論"><i class="fa fa-check"></i><b>3.5</b> 回帰分析と因果推論</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="test.html"><a href="test.html"><i class="fa fa-check"></i><b>4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="test.html"><a href="test.html#誤差でゴサいます"><i class="fa fa-check"></i><b>4.1</b> 誤差で”ゴサ”います？</a></li>
+<li class="chapter" data-level="4.2" data-path="test.html"><a href="test.html#す桃じゃないよp値だよ"><i class="fa fa-check"></i><b>4.2</b> す桃じゃないよ，p値だよ</a></li>
+<li class="chapter" data-level="4.3" data-path="test.html"><a href="test.html#有意ある意味ね"><i class="fa fa-check"></i><b>4.3</b> 有意，“ある”意味ね？</a></li>
+<li class="chapter" data-level="4.4" data-path="test.html"><a href="test.html#始めようか天体観測"><i class="fa fa-check"></i><b>4.4</b> 始めようか天体観測</a></li>
+<li class="chapter" data-level="4.5" data-path="test.html"><a href="test.html#ほうき星を探して"><i class="fa fa-check"></i><b>4.5</b> ほうき星を探して</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regtech.html"><a href="regtech.html"><i class="fa fa-check"></i><b>5</b> 回帰分析のテクニック (準備中)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regtech.html"><a href="regtech.html#ダミー変数"><i class="fa fa-check"></i><b>5.1</b> ダミー変数</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="regtech.html"><a href="regtech.html#ダミー変数ってなんだ"><i class="fa fa-check"></i><b>5.1.1</b> ダミー変数ってなんだ？</a></li>
+<li class="chapter" data-level="5.1.2" data-path="regtech.html"><a href="regtech.html#ダミー変数を用いた分析"><i class="fa fa-check"></i><b>5.1.2</b> ダミー変数を用いた分析</a></li>
+<li class="chapter" data-level="5.1.3" data-path="regtech.html"><a href="regtech.html#ダミー変数を用いるメリットとデメリット"><i class="fa fa-check"></i><b>5.1.3</b> ダミー変数を用いるメリットとデメリット</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="regtech.html"><a href="regtech.html#交差項"><i class="fa fa-check"></i><b>5.2</b> 交差項</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="regtech.html"><a href="regtech.html#交差させると見えてくる"><i class="fa fa-check"></i><b>5.2.1</b> 交差させると見えてくる</a></li>
+<li class="chapter" data-level="5.2.2" data-path="regtech.html"><a href="regtech.html#ダミー変数-量的変数"><i class="fa fa-check"></i><b>5.2.2</b> ダミー変数 × 量的変数</a></li>
+<li class="chapter" data-level="5.2.3" data-path="regtech.html"><a href="regtech.html#ダミー変数-ダミー変数"><i class="fa fa-check"></i><b>5.2.3</b> ダミー変数 × ダミー変数</a></li>
+<li class="chapter" data-level="5.2.4" data-path="regtech.html"><a href="regtech.html#量的変数-量的変数"><i class="fa fa-check"></i><b>5.2.4</b> 量的変数 × 量的変数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="regtech.html"><a href="regtech.html#多項式回帰"><i class="fa fa-check"></i><b>5.3</b> 多項式回帰</a></li>
+<li class="chapter" data-level="5.4" data-path="regtech.html"><a href="regtech.html#対数変換"><i class="fa fa-check"></i><b>5.4</b> 対数変換</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regtech.html"><a href="regtech.html#対数を使うとき"><i class="fa fa-check"></i><b>5.4.1</b> 対数を使うとき</a></li>
+<li class="chapter" data-level="5.4.2" data-path="regtech.html"><a href="regtech.html#対数の解釈"><i class="fa fa-check"></i><b>5.4.2</b> 対数の解釈</a></li>
+<li class="chapter" data-level="5.4.3" data-path="regtech.html"><a href="regtech.html#対数の変数を用いた分析"><i class="fa fa-check"></i><b>5.4.3</b> 対数の変数を用いた分析</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="regtech.html"><a href="regtech.html#パネルデータ"><i class="fa fa-check"></i><b>5.5</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="regtech.html"><a href="regtech.html#パネルデータとは何か"><i class="fa fa-check"></i><b>5.5.1</b> パネルデータとは何か</a></li>
+<li class="chapter" data-level="5.5.2" data-path="regtech.html"><a href="regtech.html#パネルデータを用いるメリット"><i class="fa fa-check"></i><b>5.5.2</b> パネルデータを用いるメリット</a></li>
+<li class="chapter" data-level="5.5.3" data-path="regtech.html"><a href="regtech.html#パネルデータ分析プールドols"><i class="fa fa-check"></i><b>5.5.3</b> パネルデータ分析：プールドOLS</a></li>
+<li class="chapter" data-level="5.5.4" data-path="regtech.html"><a href="regtech.html#パネルデータ分析固定効果モデル"><i class="fa fa-check"></i><b>5.5.4</b> パネルデータ分析：固定効果モデル</a></li>
+<li class="chapter" data-level="5.5.5" data-path="regtech.html"><a href="regtech.html#パネルデータ分析ランダム効果モデル"><i class="fa fa-check"></i><b>5.5.5</b> パネルデータ分析：ランダム効果モデル</a></li>
+<li class="chapter" data-level="5.5.6" data-path="regtech.html"><a href="regtech.html#固定なのランダムなの"><i class="fa fa-check"></i><b>5.5.6</b> 固定なの？ランダムなの？</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete.html"><a href="discrete.html"><i class="fa fa-check"></i><b>6</b> 離散選択モデル（準備中）</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete.html"><a href="discrete.html#離れて散り散り"><i class="fa fa-check"></i><b>6.1</b> 離れて散り散り？！</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete.html"><a href="discrete.html#確率線形モデル"><i class="fa fa-check"></i><b>6.2</b> 確率線形モデル</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete.html"><a href="discrete.html#ロジット回帰"><i class="fa fa-check"></i><b>6.3</b> ロジット回帰</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete.html"><a href="discrete.html#プロビット回帰"><i class="fa fa-check"></i><b>6.4</b> プロビット回帰</a></li>
+<li class="chapter" data-level="6.5" data-path="discrete.html"><a href="discrete.html#最尤推定"><i class="fa fa-check"></i><b>6.5</b> 最尤推定</a></li>
+<li class="chapter" data-level="6.6" data-path="discrete.html"><a href="discrete.html#順序"><i class="fa fa-check"></i><b>6.6</b> 順序</a></li>
+<li class="chapter" data-level="6.7" data-path="discrete.html"><a href="discrete.html#多項"><i class="fa fa-check"></i><b>6.7</b> 多項</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="textual.html"><a href="textual.html"><i class="fa fa-check"></i><b>7</b> 計量テキスト分析（準備中）</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="textual.html"><a href="textual.html#テキストデータとは"><i class="fa fa-check"></i><b>7.1</b> テキストデータとは</a></li>
+<li class="chapter" data-level="7.2" data-path="textual.html"><a href="textual.html#quantedaは久遠ってんだ"><i class="fa fa-check"></i><b>7.2</b> Quantedaは久遠ってんだ？！</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quiz.html"><a href="quiz.html"><i class="fa fa-check"></i><b>8</b> 演習問題</a></li>
+<li class="chapter" data-level="9" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>9</b> 文献案内</a></li>
+<li class="chapter" data-level="" data-path="postscript.html"><a href="postscript.html"><i class="fa fa-check"></i>ちょっと短い，少し個人的な，あとがき</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">『Rによる原因を推論する』</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="test" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">チャプター4</span> 統計的仮説検定<a href="test.html#test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>本章では統計的仮説検定について簡単に説明します．</p>
+<div id="誤差でゴサいます" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> 誤差で”ゴサ”います？<a href="test.html#誤差でゴサいます" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>前章では回帰分析のやり方を学びました．<code>lm()</code>関数を用いることで，回帰係数を推定することができました．説明変数が被説明変数に対して効果を持つとき，その回帰係数は0ではないはずです．なので，回帰係数は0ではないときに効果があると結論するわけでした．</p>
+<p>しかし，実際の分析においては必ず<strong>誤差</strong>がありますので，たとえ効果が全くないとしても，その回帰係数の推定値がぴったり0となることはあまりありません．したがって，「推定値が単なる誤差とは思えないほどに0から十分に離れている」ときに効果があると結論することになります．</p>
+<p>それでは，推定値がどれくらい0から離れていれば，0から十分に離れている，すなわち効果があると言えるのでしょうか．すなわち，どのようなときに推定値の値に意味がある，<strong>有意</strong>(significant)であると言うことができるでしょうか．</p>
+<p>例えば，<code>lm(data = mydata, salary ~ educ + iq)</code>を実行すると，<code>educ</code>の回帰係数の推定値は16.17となります．それは，教育年数が1年増えると年収が約16万円増えると解釈するのでした．これなら0から十分に離れている値であるとなんとなく言えそうですね．</p>
+<p>では，もしも回帰係数の推定値が0.1だったらどうでしょうか？それだと誤差の範囲内な気がしますね．では，推定値が0.5だったらどうでしょう．それでも誤差の範囲内？1だったらどうですか？2は？3は？</p>
+<p>回帰係数の推定値が微妙なラインにあるときには，人によって誤差の範囲内だと感じるかもしれませんし，誤差であるとは思えないと感じるかもしれません．ある値が(絶対値で)0よりも十分に大きいかどうかというのは主観的な判断になってしまいます．</p>
+<p>このように，どれくらいの値なら0から十分に離れていると言えるのかというのは人によって異なります．そのため，回帰係数の推定値が0から十分に離れている，有意である，と言うためには，人の主観によらない何らかの客観的な基準が必要になりそうです．</p>
+</div>
+<div id="す桃じゃないよp値だよ" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> す桃じゃないよ，p値だよ<a href="test.html#す桃じゃないよp値だよ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>回帰係数の推定値が単なる誤差とは思えないほどに0から十分に離れているかどうかの基準として，<strong>p値</strong>が使われます．回帰係数の
+推定値について，p値という指標を手元のデータから計算することができます．その具体的な計算の仕方は本書のレベルを超えるので，参考文献にあたってください．</p>
+<p>p値は，「もしも本当の回帰係数が0であるときに，いま手元のデータから計算された推定値以上の推定値がたまたま誤差によって生じる確率」を意味しています．すなわち，「本当の回帰係数が0であって，推定値は誤差によってたまたま0から離れてしまっているだけに過ぎないと仮定すると，いま手元のデータから計算された推定値がどれほど極端な値なのか」を表す指標です．なお，このような「回帰係数が0である」すなわち「効果がない」という仮定のことを<strong>帰無仮説</strong>と言います</p>
+<p>p値をさらに簡単に言うと，「帰無仮説が正しいとしたときに，この推定値が誤差の範囲であるかどうか」の指標です．p値が大きい時には推定値が単なる誤差によるものである可能性が高いという意味になります．ひるがえって，p値が小さいときには推定値が単なる誤差によるものである可能性が低いという意味になります．</p>
+<p>さて，p値をつかってどのように「回帰係数の推定値が単なる誤差とは思えないほどに0から十分に離れている」と結論するのでしょうか．その論証の仕方は<strong>背理法</strong>(proof by contradiction)に少し似ています．</p>
+<p>背理法とは，「Aである」と証明するために，まず，「Aでない」と仮定するのでした．そして，その仮定から導かれる矛盾を示すことで，「Aでない，ではない」すなわち「Aである」と主張するのでした．</p>
+<p>p値を使って「回帰係数の推定値が単なる誤差ではなく意味がある」と結論する際の手続きは背理法に似ています．まず，「回帰係数の本当の値は0だ」と仮定します．背理法のように，この仮定から矛盾的な事実を示せれば，「回帰係数の本当の値は0ではない」と結論することができるはずです．その矛盾的な事実を示すのに使われるのがp値です．</p>
+<p>p値がとても小さいとき，それは手元のデータから計算された推定値が誤差によってたまたま得られる確率はとても低いということを意味します．すなわち，とても稀なことが起きているということです．「こんなに稀なことが起きるなんて，不思議すぎる…これは，仮定が間違っていると考えないと無理がある」と考えて，帰無仮説を誤りであるとして退けるのです．このような論証の手続きを<strong>統計的仮説検定</strong>と言います．</p>
+<p>p値がとても小さいことを根拠に，帰無仮説を誤りであるとして退けることを，「帰無仮説を棄却する」と言います．帰無仮説が棄却されると，帰無仮説の否定にあたる「回帰係数の本当の値は0ではない」が正しいとして結論するのです．なお，帰無仮説の否定にあたる仮説を<strong>対立仮説</strong>と呼びます．このようにして，回帰係数の推定値が0から十分に離れているのかどうか，意味を持っているのかどうかを客観的に判断することができるのです．</p>
+</div>
+<div id="有意ある意味ね" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> 有意，“ある”意味ね？<a href="test.html#有意ある意味ね" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>さて，実際のところp値がどれほど小さければ，とても小さいと言えるでしょうか．その基準は学問領域の慣習によって決められていることが多いです．それを下回ればとても小さいと判断する閾値のことを，<strong>有意水準</strong>(level of significance)と言います．社会科学の場合は，5%の水準に設定されることが多いです．すなわち，p値が0.05より小さければ，とても小さい，したがって「回帰係数の本当の値は0ではない」と結論することを約束するわけです(p値は確率なので，0以上1以下の値をとることに注意してください)．</p>
+<p>統計的仮説検定によって，帰無仮説が棄却されたとき，その推定値は「<strong>統計学的に有意である</strong>(statistically significant)」と言います．しかし，やや発展的ですが注意してほしいのは，帰無仮説が棄却されるということは，あくまで「“統計学的に”有意である」ということです．サンプルサイズすなわちデータ数を増やすとp値は必ず小さくなります．それは，どれほど回帰係数が0に近くても，サンプルサイズを十分に増やせば必ず統計学的に有意な結果が得られるということです．</p>
+<p>とはいえ，例えば，「年収(万円) = 定数項 + 教育年数(年) + 統制変数」という回帰式を推定したところ，教育年数の係数の推定値が0.5で，サンプルサイズがとても大きいために統計学的に有意であったとしましょう．統計学的に有意ではありますが，そのような小さな回帰係数に意味はあるでしょうか．この場合，20年の教育を受けてやっとこさ1万円の年収増になるわけですが，そのようなあまりに小さな効果に実際的な意味があると言えるでしょうか．</p>
+<p>上記のような教育の効果を推定する回帰分析の目的は多くの場合，教育政策への応用です．たとえ，統計学的に有意な結果であったとしても，あまりに
+効果が小さいのであれば実際的な意味があるとは言いづらいですね．このような推定値の実際的な意味のことを<strong>実際的有意性</strong>(practical significance)，または，<strong>経済学的有意性</strong>(economic significance)と言います．統計学的有意性だけではなく，実際的有意性にも注意するように心がけましょう．</p>
+</div>
+<div id="始めようか天体観測" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> 始めようか天体観測<a href="test.html#始めようか天体観測" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>回帰分析の統計的仮説検定もRで簡単に行えます．<code>summary()</code>関数を用いることで，回帰分析の統計的仮説検定だけでなく，回帰分析の他のさまざまな結果を簡単に確認することができます．</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="test.html#cb30-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> salary <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> exper <span class="sc">+</span> iq, <span class="at">data =</span> mydata)</span>
+<span id="cb30-2"><a href="test.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(result)</span>
+<span id="cb30-3"><a href="test.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-4"><a href="test.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb30-5"><a href="test.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="do">## lm(formula = salary ~ educ + age + exper + iq, data = mydata)</span></span>
+<span id="cb30-6"><a href="test.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-7"><a href="test.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb30-8"><a href="test.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="do">##     Min      1Q  Median      3Q     Max </span></span>
+<span id="cb30-9"><a href="test.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="do">## -662.24 -140.32    3.41  140.56  597.49 </span></span>
+<span id="cb30-10"><a href="test.html#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-11"><a href="test.html#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb30-12"><a href="test.html#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="do">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb30-13"><a href="test.html#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) -1803.2587    79.7411 -22.614  &lt; 2e-16 ***</span></span>
+<span id="cb30-14"><a href="test.html#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="do">## educ           15.9920     3.1117   5.139 3.32e-07 ***</span></span>
+<span id="cb30-15"><a href="test.html#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="do">## age             4.1635     1.3228   3.147   0.0017 ** </span></span>
+<span id="cb30-16"><a href="test.html#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="do">## exper           0.0194     0.5605   0.035   0.9724    </span></span>
+<span id="cb30-17"><a href="test.html#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="do">## iq             23.5673     0.8664  27.203  &lt; 2e-16 ***</span></span>
+<span id="cb30-18"><a href="test.html#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb30-19"><a href="test.html#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb30-20"><a href="test.html#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-21"><a href="test.html#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 206.3 on 995 degrees of freedom</span></span>
+<span id="cb30-22"><a href="test.html#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.6192, Adjusted R-squared:  0.6177 </span></span>
+<span id="cb30-23"><a href="test.html#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="do">## F-statistic: 404.4 on 4 and 995 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div>
+<p>さて，<code>Estimate</code>の列にそれぞれの回帰係数の推定値が表示されています．そして，<code>Pr(&gt;|t|)</code>という列に p値が表示されています．<code>educ</code>のp値は<code>2e-16</code>ですが，これは指数表記というもので，<span class="math inline">\(2\times10^{-16}=\frac{2}{10^{16}}\)</span>という値を表しています．とても小さな値で，0.05を下回ります．すなわち，<code>educ</code>の係数の推定値は統計学的に有意であるということになります．統計学的に有意なものにはアルタリスク<code>*</code>という記号が付けられています．他にも統計学的に有意な推定値がありますね．一つだけ統計学的に有意でない推定値がありますね．それは<code>exper</code>で，p値は0.97で0.05を上回っていますね．このようにRを使って簡単に統計的仮説検定を行うことができます．</p>
+</div>
+<div id="ほうき星を探して" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> ほうき星を探して<a href="test.html#ほうき星を探して" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>stargazer()</code>という関数を使って，回帰分析の結果をきれいにまとめることができます．次のコードを実行してください．</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="test.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;stargazer&quot;</span>)</span>
+<span id="cb31-2"><a href="test.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb31-3"><a href="test.html#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="test.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(result, <span class="at">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+salary
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+educ
+</td>
+<td>
+15.992<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(3.112)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+age
+</td>
+<td>
+4.164<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1.323)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+exper
+</td>
+<td>
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.561)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+iq
+</td>
+<td>
+23.567<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.866)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-1,803.259<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(79.741)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+1,000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.619
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.618
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+206.298 (df = 995)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+404.447<sup>***</sup> (df = 4; 995)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<p>複数の回帰分析の結果を比べやすく表示することもできます．</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="test.html#cb32-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> educ, <span class="at">data =</span> mydata)</span>
+<span id="cb32-2"><a href="test.html#cb32-2" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> educ <span class="sc">+</span> age, <span class="at">data =</span> mydata)</span>
+<span id="cb32-3"><a href="test.html#cb32-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> exper, <span class="at">data =</span> mydata)</span>
+<span id="cb32-4"><a href="test.html#cb32-4" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> exper <span class="sc">+</span> iq, <span class="at">data =</span> mydata)</span>
+<span id="cb32-5"><a href="test.html#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="test.html#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(model1, model2, model3, model4, <span class="at">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="4">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="4">
+salary
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+<td>
+(4)
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+educ
+</td>
+<td>
+70.387<sup>***</sup>
+</td>
+<td>
+70.313<sup>***</sup>
+</td>
+<td>
+70.294<sup>***</sup>
+</td>
+<td>
+15.992<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(3.153)
+</td>
+<td>
+(3.148)
+</td>
+<td>
+(3.150)
+</td>
+<td>
+(3.112)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+age
+</td>
+<td>
+</td>
+<td>
+3.624<sup>**</sup>
+</td>
+<td>
+3.620<sup>**</sup>
+</td>
+<td>
+4.164<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(1.745)
+</td>
+<td>
+(1.746)
+</td>
+<td>
+(1.323)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+exper
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.172
+</td>
+<td>
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.740)
+</td>
+<td>
+(0.561)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+iq
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+23.567<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.866)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-33.671
+</td>
+<td>
+-140.780<sup>**</sup>
+</td>
+<td>
+-143.861<sup>**</sup>
+</td>
+<td>
+-1,803.259<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(41.965)
+</td>
+<td>
+(66.441)
+</td>
+<td>
+(67.782)
+</td>
+<td>
+(79.741)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+1,000
+</td>
+<td>
+1,000
+</td>
+<td>
+1,000
+</td>
+<td>
+1,000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.333
+</td>
+<td>
+0.336
+</td>
+<td>
+0.336
+</td>
+<td>
+0.619
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.332
+</td>
+<td>
+0.335
+</td>
+<td>
+0.334
+</td>
+<td>
+0.618
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+272.600 (df = 998)
+</td>
+<td>
+272.149 (df = 997)
+</td>
+<td>
+272.278 (df = 996)
+</td>
+<td>
+206.298 (df = 995)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+498.375<sup>***</sup> (df = 1; 998)
+</td>
+<td>
+252.172<sup>***</sup> (df = 2; 997)
+</td>
+<td>
+167.973<sup>***</sup> (df = 3; 996)
+</td>
+<td>
+404.447<sup>***</sup> (df = 4; 995)
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="4" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regtech.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

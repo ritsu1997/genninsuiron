@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>チャプター1 はじめに | 『Rによる原因を推論する』</title>
+  <meta name="description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="チャプター1 はじめに | 『Rによる原因を推論する』" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/gennin.png" />
+  <meta property="og:description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="github-repo" content="https://github.com/ritsu1997/genninsuiron" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="チャプター1 はじめに | 『Rによる原因を推論する』" />
+  
+  <meta name="twitter:description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="twitter:image" content="/gennin.png" />
+
+<meta name="author" content="北川 梨津，原 健人" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gennin.png" />
+  <link rel="shortcut icon" href="gennin.png" type="image/x-icon" />
+<link rel="prev" href="introintro.html"/>
+<link rel="next" href="summarization.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">『Rによる原因を推論する』</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>久米ゼミにようこそ！</a></li>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html"><i class="fa fa-check"></i>はじめる前に</a>
+<ul>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html#おことわり"><i class="fa fa-check"></i>おことわり</a></li>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html#著者について"><i class="fa fa-check"></i>著者について</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#r言語とは"><i class="fa fa-check"></i><b>1.1</b> R言語とは</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#rstudioとは"><i class="fa fa-check"></i><b>1.2</b> RStudioとは</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#四則演算"><i class="fa fa-check"></i><b>1.3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#文字列"><i class="fa fa-check"></i><b>1.3.2</b> 文字列</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#割り当て演算"><i class="fa fa-check"></i><b>1.3.3</b> 割り当て演算</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#ベクトル"><i class="fa fa-check"></i><b>1.3.4</b> ベクトル</a></li>
+<li class="chapter" data-level="1.3.5" data-path="intro.html"><a href="intro.html#ベクトルの演算"><i class="fa fa-check"></i><b>1.3.5</b> ベクトルの演算</a></li>
+<li class="chapter" data-level="1.3.6" data-path="intro.html"><a href="intro.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.3.6</b> csvファイルの読み込み</a></li>
+<li class="chapter" data-level="1.3.7" data-path="intro.html"><a href="intro.html#サブセッティング"><i class="fa fa-check"></i><b>1.3.7</b> サブセッティング</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="summarization.html"><a href="summarization.html"><i class="fa fa-check"></i><b>2</b> データを要約する</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="summarization.html"><a href="summarization.html#平均値"><i class="fa fa-check"></i><b>2.1</b> 平均値</a></li>
+<li class="chapter" data-level="2.2" data-path="summarization.html"><a href="summarization.html#分散"><i class="fa fa-check"></i><b>2.2</b> 分散</a></li>
+<li class="chapter" data-level="2.3" data-path="summarization.html"><a href="summarization.html#標準偏差"><i class="fa fa-check"></i><b>2.3</b> 標準偏差</a></li>
+<li class="chapter" data-level="2.4" data-path="summarization.html"><a href="summarization.html#ヒストグラム"><i class="fa fa-check"></i><b>2.4</b> ヒストグラム</a></li>
+<li class="chapter" data-level="2.5" data-path="summarization.html"><a href="summarization.html#散布図"><i class="fa fa-check"></i><b>2.5</b> 散布図</a></li>
+<li class="chapter" data-level="2.6" data-path="summarization.html"><a href="summarization.html#相関係数"><i class="fa fa-check"></i><b>2.6</b> 相関係数</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>3</b> 回帰分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regression.html"><a href="regression.html#回帰分析とは"><i class="fa fa-check"></i><b>3.1</b> 回帰分析とは</a></li>
+<li class="chapter" data-level="3.2" data-path="regression.html"><a href="regression.html#単回帰分析"><i class="fa fa-check"></i><b>3.2</b> 単回帰分析</a></li>
+<li class="chapter" data-level="3.3" data-path="regression.html"><a href="regression.html#最小二乗法"><i class="fa fa-check"></i><b>3.3</b> 最小二乗法</a></li>
+<li class="chapter" data-level="3.4" data-path="regression.html"><a href="regression.html#重回帰分析"><i class="fa fa-check"></i><b>3.4</b> 重回帰分析</a></li>
+<li class="chapter" data-level="3.5" data-path="regression.html"><a href="regression.html#回帰分析と因果推論"><i class="fa fa-check"></i><b>3.5</b> 回帰分析と因果推論</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="test.html"><a href="test.html"><i class="fa fa-check"></i><b>4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="test.html"><a href="test.html#誤差でゴサいます"><i class="fa fa-check"></i><b>4.1</b> 誤差で”ゴサ”います？</a></li>
+<li class="chapter" data-level="4.2" data-path="test.html"><a href="test.html#す桃じゃないよp値だよ"><i class="fa fa-check"></i><b>4.2</b> す桃じゃないよ，p値だよ</a></li>
+<li class="chapter" data-level="4.3" data-path="test.html"><a href="test.html#有意ある意味ね"><i class="fa fa-check"></i><b>4.3</b> 有意，“ある”意味ね？</a></li>
+<li class="chapter" data-level="4.4" data-path="test.html"><a href="test.html#始めようか天体観測"><i class="fa fa-check"></i><b>4.4</b> 始めようか天体観測</a></li>
+<li class="chapter" data-level="4.5" data-path="test.html"><a href="test.html#ほうき星を探して"><i class="fa fa-check"></i><b>4.5</b> ほうき星を探して</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regtech.html"><a href="regtech.html"><i class="fa fa-check"></i><b>5</b> 回帰分析のテクニック (準備中)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regtech.html"><a href="regtech.html#ダミー変数"><i class="fa fa-check"></i><b>5.1</b> ダミー変数</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="regtech.html"><a href="regtech.html#ダミー変数ってなんだ"><i class="fa fa-check"></i><b>5.1.1</b> ダミー変数ってなんだ？</a></li>
+<li class="chapter" data-level="5.1.2" data-path="regtech.html"><a href="regtech.html#ダミー変数を用いた分析"><i class="fa fa-check"></i><b>5.1.2</b> ダミー変数を用いた分析</a></li>
+<li class="chapter" data-level="5.1.3" data-path="regtech.html"><a href="regtech.html#ダミー変数を用いるメリットとデメリット"><i class="fa fa-check"></i><b>5.1.3</b> ダミー変数を用いるメリットとデメリット</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="regtech.html"><a href="regtech.html#交差項"><i class="fa fa-check"></i><b>5.2</b> 交差項</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="regtech.html"><a href="regtech.html#交差させると見えてくる"><i class="fa fa-check"></i><b>5.2.1</b> 交差させると見えてくる</a></li>
+<li class="chapter" data-level="5.2.2" data-path="regtech.html"><a href="regtech.html#ダミー変数-量的変数"><i class="fa fa-check"></i><b>5.2.2</b> ダミー変数 × 量的変数</a></li>
+<li class="chapter" data-level="5.2.3" data-path="regtech.html"><a href="regtech.html#ダミー変数-ダミー変数"><i class="fa fa-check"></i><b>5.2.3</b> ダミー変数 × ダミー変数</a></li>
+<li class="chapter" data-level="5.2.4" data-path="regtech.html"><a href="regtech.html#量的変数-量的変数"><i class="fa fa-check"></i><b>5.2.4</b> 量的変数 × 量的変数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="regtech.html"><a href="regtech.html#多項式回帰"><i class="fa fa-check"></i><b>5.3</b> 多項式回帰</a></li>
+<li class="chapter" data-level="5.4" data-path="regtech.html"><a href="regtech.html#対数変換"><i class="fa fa-check"></i><b>5.4</b> 対数変換</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regtech.html"><a href="regtech.html#対数を使うとき"><i class="fa fa-check"></i><b>5.4.1</b> 対数を使うとき</a></li>
+<li class="chapter" data-level="5.4.2" data-path="regtech.html"><a href="regtech.html#対数の解釈"><i class="fa fa-check"></i><b>5.4.2</b> 対数の解釈</a></li>
+<li class="chapter" data-level="5.4.3" data-path="regtech.html"><a href="regtech.html#対数の変数を用いた分析"><i class="fa fa-check"></i><b>5.4.3</b> 対数の変数を用いた分析</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="regtech.html"><a href="regtech.html#パネルデータ"><i class="fa fa-check"></i><b>5.5</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="regtech.html"><a href="regtech.html#パネルデータとは何か"><i class="fa fa-check"></i><b>5.5.1</b> パネルデータとは何か</a></li>
+<li class="chapter" data-level="5.5.2" data-path="regtech.html"><a href="regtech.html#パネルデータを用いるメリット"><i class="fa fa-check"></i><b>5.5.2</b> パネルデータを用いるメリット</a></li>
+<li class="chapter" data-level="5.5.3" data-path="regtech.html"><a href="regtech.html#パネルデータ分析プールドols"><i class="fa fa-check"></i><b>5.5.3</b> パネルデータ分析：プールドOLS</a></li>
+<li class="chapter" data-level="5.5.4" data-path="regtech.html"><a href="regtech.html#パネルデータ分析固定効果モデル"><i class="fa fa-check"></i><b>5.5.4</b> パネルデータ分析：固定効果モデル</a></li>
+<li class="chapter" data-level="5.5.5" data-path="regtech.html"><a href="regtech.html#パネルデータ分析ランダム効果モデル"><i class="fa fa-check"></i><b>5.5.5</b> パネルデータ分析：ランダム効果モデル</a></li>
+<li class="chapter" data-level="5.5.6" data-path="regtech.html"><a href="regtech.html#固定なのランダムなの"><i class="fa fa-check"></i><b>5.5.6</b> 固定なの？ランダムなの？</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete.html"><a href="discrete.html"><i class="fa fa-check"></i><b>6</b> 離散選択モデル（準備中）</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete.html"><a href="discrete.html#離れて散り散り"><i class="fa fa-check"></i><b>6.1</b> 離れて散り散り？！</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete.html"><a href="discrete.html#確率線形モデル"><i class="fa fa-check"></i><b>6.2</b> 確率線形モデル</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete.html"><a href="discrete.html#ロジット回帰"><i class="fa fa-check"></i><b>6.3</b> ロジット回帰</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete.html"><a href="discrete.html#プロビット回帰"><i class="fa fa-check"></i><b>6.4</b> プロビット回帰</a></li>
+<li class="chapter" data-level="6.5" data-path="discrete.html"><a href="discrete.html#最尤推定"><i class="fa fa-check"></i><b>6.5</b> 最尤推定</a></li>
+<li class="chapter" data-level="6.6" data-path="discrete.html"><a href="discrete.html#順序"><i class="fa fa-check"></i><b>6.6</b> 順序</a></li>
+<li class="chapter" data-level="6.7" data-path="discrete.html"><a href="discrete.html#多項"><i class="fa fa-check"></i><b>6.7</b> 多項</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="textual.html"><a href="textual.html"><i class="fa fa-check"></i><b>7</b> 計量テキスト分析（準備中）</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="textual.html"><a href="textual.html#テキストデータとは"><i class="fa fa-check"></i><b>7.1</b> テキストデータとは</a></li>
+<li class="chapter" data-level="7.2" data-path="textual.html"><a href="textual.html#quantedaは久遠ってんだ"><i class="fa fa-check"></i><b>7.2</b> Quantedaは久遠ってんだ？！</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quiz.html"><a href="quiz.html"><i class="fa fa-check"></i><b>8</b> 演習問題</a></li>
+<li class="chapter" data-level="9" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>9</b> 文献案内</a></li>
+<li class="chapter" data-level="" data-path="postscript.html"><a href="postscript.html"><i class="fa fa-check"></i>ちょっと短い，少し個人的な，あとがき</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">『Rによる原因を推論する』</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">チャプター1</span> はじめに<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="r言語とは" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> R言語とは<a href="intro.html#r言語とは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>R言語</strong>とは統計解析に特化した<strong>プログラミング言語</strong>です．Rには大きなコミュニティーが存在し，多くの教科書やオンラインのリソースがあるだけでなく，新しいパッケージが日進月歩開発されています．意外と汎用性もあるので，非常に魅力的な統計プログラミング言語です．</p>
+<p>R以外にも<strong>Stata</strong>や<strong>SPSS</strong>などの統計ソフトウェアがあります．しかし，<strong>Stata</strong>や<strong>SPSS</strong>は有料で非常に高額です．大学に在籍している間は使えますが，卒業してから企業で使うのは少し難しいです．対して，Rは<strong>無料</strong>です．なので，長く安心して使うことができます．</p>
+<p>たまに，<strong>Python</strong>とR，どちらを使えばいいですかという質問が来ます．その答えは両方です．Pythonの方が汎用性は圧倒的にありますし，とりわけ機械学習などに興味がある場合はPythonの方が便利でしょう．しかし，Pythonで計量分析を行うとなると，Rに比べてコーディングが冗長になるきらいがあります．なので，データを扱う仕事に興味があるのなら，両方を学ぶようにすることが無難です．</p>
+<p><img src="soft.png" width="100%" /></p>
+</div>
+<div id="rstudioとは" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> RStudioとは<a href="intro.html#rstudioとは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>RStudio</strong>とはRのための<strong>統合開発環境</strong>(IDE)です．IDEとは簡単に言えば，コードを書きやすくするための道具です．単に「R」と言うときは，RStudioを指していることが多いです．</p>
+<p><img src="rstudio.png" width="80%" /></p>
+</div>
+<div id="基本操作" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> 基本操作<a href="intro.html#基本操作" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="四則演算" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> 四則演算<a href="intro.html#四則演算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>簡単な計算から始めましょう．コードが書けたら，Windowsの場合は<code>Ctrl + Enter</code>，Macの場合は<code>Command + Return</code>を入力することで実行(Run)することができます．</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>   <span class="co"># 足し算</span></span>
+<span id="cb1-2"><a href="intro.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb1-3"><a href="intro.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">-</span> <span class="dv">10</span>  <span class="co"># 引き算</span></span>
+<span id="cb1-4"><a href="intro.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -5</span></span>
+<span id="cb1-5"><a href="intro.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span> <span class="sc">*</span> <span class="dv">9</span>   <span class="co"># 掛け算</span></span>
+<span id="cb1-6"><a href="intro.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 81</span></span>
+<span id="cb1-7"><a href="intro.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">/</span> <span class="dv">3</span>   <span class="co"># 割り算</span></span>
+<span id="cb1-8"><a href="intro.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.6666667</span></span>
+<span id="cb1-9"><a href="intro.html#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="intro.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">^</span> <span class="dv">4</span>   <span class="co"># 累乗</span></span>
+<span id="cb1-11"><a href="intro.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 16</span></span>
+<span id="cb1-12"><a href="intro.html#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">9</span>) <span class="co"># 平方根</span></span>
+<span id="cb1-13"><a href="intro.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3</span></span></code></pre></div>
+</div>
+<div id="文字列" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> 文字列<a href="intro.html#文字列" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ダブルクォーテーションマークを使って，文字列を扱うことができます．</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Hello, World!&quot;</span></span>
+<span id="cb2-2"><a href="intro.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Hello, World!&quot;</span></span>
+<span id="cb2-3"><a href="intro.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;We love Ikuo&quot;</span></span>
+<span id="cb2-4"><a href="intro.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;We love Ikuo&quot;</span></span>
+<span id="cb2-5"><a href="intro.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;久米ゼミ&quot;</span></span>
+<span id="cb2-6"><a href="intro.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;久米ゼミ&quot;</span></span></code></pre></div>
+</div>
+<div id="割り当て演算" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> 割り当て演算<a href="intro.html#割り当て演算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>&lt;-</code>という割り当て演算子を用いることで，値をオブジェクトとして任意の名前に格納することができます．</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb3-2"><a href="intro.html#cb3-2" aria-hidden="true" tabindex="-1"></a>a</span>
+<span id="cb3-3"><a href="intro.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 5</span></span>
+<span id="cb3-4"><a href="intro.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="intro.html#cb3-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">6</span></span>
+<span id="cb3-6"><a href="intro.html#cb3-6" aria-hidden="true" tabindex="-1"></a>b</span>
+<span id="cb3-7"><a href="intro.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 10</span></span>
+<span id="cb3-8"><a href="intro.html#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="intro.html#cb3-9" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span>
+<span id="cb3-10"><a href="intro.html#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 15</span></span>
+<span id="cb3-11"><a href="intro.html#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="intro.html#cb3-12" aria-hidden="true" tabindex="-1"></a>kume <span class="ot">&lt;-</span> <span class="st">&quot;LOVE&quot;</span></span>
+<span id="cb3-13"><a href="intro.html#cb3-13" aria-hidden="true" tabindex="-1"></a>kume</span>
+<span id="cb3-14"><a href="intro.html#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;LOVE&quot;</span></span></code></pre></div>
+</div>
+<div id="ベクトル" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> ベクトル<a href="intro.html#ベクトル" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>c()</code>関数を用いて，<strong>ベクトル</strong>をつくることができます．<code>c</code>とはcombineのcです．ベクトルとは値の連なりです．Rでは基本的にデータをベクトルとして扱います．ベクトルに含まれる値を<strong>要素</strong>(element)と呼びます．</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1" aria-hidden="true" tabindex="-1"></a>vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb4-2"><a href="intro.html#cb4-2" aria-hidden="true" tabindex="-1"></a>vector</span>
+<span id="cb4-3"><a href="intro.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 2 3</span></span>
+<span id="cb4-4"><a href="intro.html#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="intro.html#cb4-5" aria-hidden="true" tabindex="-1"></a>tutors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Kitagawa&quot;</span>, <span class="st">&quot;Saito&quot;</span>, <span class="st">&quot;Ryuman&quot;</span>, <span class="st">&quot;Takahashi&quot;</span>)</span>
+<span id="cb4-6"><a href="intro.html#cb4-6" aria-hidden="true" tabindex="-1"></a>tutors</span>
+<span id="cb4-7"><a href="intro.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Kitagawa&quot;  &quot;Saito&quot;     &quot;Ryuman&quot;    &quot;Takahashi&quot;</span></span></code></pre></div>
+<p>ベクトルに含まれる要素の個数を<strong>長さ</strong>(length)と呼びます．例えば，<code>c(1, 2, 3)</code>というベクトルには3つの要素が含まれているので，このベクトルの長さは3です．ベクトルに含まれる要素の個数が大きくなってくると，ベクトルの長さを数えるのが大変です．<code>length()</code>関数を用いれば，ベクトルの長さを簡単に確認できます．</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="intro.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(v)</span>
+<span id="cb5-3"><a href="intro.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3</span></span></code></pre></div>
+<p>あるオブジェクトがベクトルかどうかを<code>is.vector()</code>関数を使って確認できます．次のコードを試してみましょう．</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="intro.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(a)</span>
+<span id="cb6-3"><a href="intro.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] TRUE</span></span>
+<span id="cb6-4"><a href="intro.html#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="intro.html#cb6-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb6-6"><a href="intro.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(b)</span>
+<span id="cb6-7"><a href="intro.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
+<p>どちらも<code>TRUE</code>と出力されますね．実は，<code>c(1)</code>と<code>1</code>は同じベクトルです．長さ1のベクトルを<strong>スカラー</strong>と呼ぶことにします．</p>
+</div>
+<div id="ベクトルの演算" class="section level3 hasAnchor" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> ベクトルの演算<a href="intro.html#ベクトルの演算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ベクトルとベクトルの演算を確認します．基本的に，順番が同じ要素の組について
+計算して，その値を要素とする新たなベクトルが出力されます．</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb7-2"><a href="intro.html#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb7-3"><a href="intro.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="intro.html#cb7-4" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y <span class="co"># 足し算</span></span>
+<span id="cb7-5"><a href="intro.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 11 12 13</span></span>
+<span id="cb7-6"><a href="intro.html#cb7-6" aria-hidden="true" tabindex="-1"></a>x <span class="sc">-</span> y <span class="co"># 引き算</span></span>
+<span id="cb7-7"><a href="intro.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 9 8 7</span></span>
+<span id="cb7-8"><a href="intro.html#cb7-8" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> y <span class="co"># 掛け算</span></span>
+<span id="cb7-9"><a href="intro.html#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 10 20 30</span></span>
+<span id="cb7-10"><a href="intro.html#cb7-10" aria-hidden="true" tabindex="-1"></a>x <span class="sc">/</span> y <span class="co"># 割り算</span></span>
+<span id="cb7-11"><a href="intro.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 10.000000  5.000000  3.333333</span></span>
+<span id="cb7-12"><a href="intro.html#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="intro.html#cb7-13" aria-hidden="true" tabindex="-1"></a>y <span class="sc">^</span> <span class="dv">2</span> <span class="co"># 累乗</span></span>
+<span id="cb7-14"><a href="intro.html#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 4 9</span></span>
+<span id="cb7-15"><a href="intro.html#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(y) <span class="co"># 平方根</span></span>
+<span id="cb7-16"><a href="intro.html#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1.000000 1.414214 1.732051</span></span>
+<span id="cb7-17"><a href="intro.html#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="intro.html#cb7-18" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%*%</span> y <span class="co"># 内積</span></span>
+<span id="cb7-19"><a href="intro.html#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="do">##      [,1]</span></span>
+<span id="cb7-20"><a href="intro.html#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1,]   60</span></span></code></pre></div>
+<p>ベクトルとスカラーの演算を確認します．ベクトルとスカラーの演算では，スカラーがベクトルの長さ分だけ繰り返されます．実際に試してみましょう．</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb8-2"><a href="intro.html#cb8-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">-</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] -2 -1  0  1  2</code></pre>
+<div id="関数" class="section level4 hasAnchor" number="1.3.5.1">
+<h4><span class="header-section-number">1.3.5.1</span> 関数<a href="intro.html#関数" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>関数</strong>を用いることで，さまざまな演算を行うことができます．平方根を求める際に用いた<code>sqrt()</code>も関数の一つです．一般に，関数は<code>f(x)</code>の形をしています．関数の中に入れる値<code>x</code>を<strong>引数</strong>(argument)と呼びます．指定された引数にしたがって，関数は値を出力します．その出力される値のことを<strong>戻り値</strong>(return value)と呼びます．関数の例をいくつか見てみましょう．</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">100</span>)    <span class="co"># 引数の平方根を出力</span></span>
+<span id="cb10-2"><a href="intro.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 10</span></span>
+<span id="cb10-3"><a href="intro.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">5.555</span>) <span class="co"># 丸め</span></span>
+<span id="cb10-4"><a href="intro.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 6</span></span>
+<span id="cb10-5"><a href="intro.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span>()       <span class="co"># 日時</span></span>
+<span id="cb10-6"><a href="intro.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Mon May 30 12:50:09 2022&quot;</span></span></code></pre></div>
+<p>自分で関数を定義することもできます．</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1" aria-hidden="true" tabindex="-1"></a>bmi <span class="ot">&lt;-</span> <span class="cf">function</span>(weight, height){</span>
+<span id="cb11-2"><a href="intro.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  index <span class="ot">&lt;-</span> weight <span class="sc">/</span> height<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb11-3"><a href="intro.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(index)</span>
+<span id="cb11-4"><a href="intro.html#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-5"><a href="intro.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bmi</span>(<span class="dv">70</span>, <span class="fl">1.7</span>)</span>
+<span id="cb11-6"><a href="intro.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 24.22145</span></span></code></pre></div>
+</div>
+</div>
+<div id="csvファイルの読み込み" class="section level3 hasAnchor" number="1.3.6">
+<h3><span class="header-section-number">1.3.6</span> csvファイルの読み込み<a href="intro.html#csvファイルの読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データセットのファイル形式はcsvであることが多いです．csvファイルは<code>read.csv</code>関数で読み込むことができます．さらに，<code>file.choose()</code>によって読み込むファイルをGUIで指定することができます．架空のデータセット<code>wage.csv</code>を読み込みましょう．<a href="https://drive.google.com/file/d/1s7qyxR7NLt679x9YnJkeC63BEUeXibY3/view?usp=sharing"><strong><code>wage.csv</code>はここからダウンロードできます．</strong></a></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.choose</span>())</span></code></pre></div>
+<p>データフレームが格納された名前を実行すると，そのデータフレームの中身を確認できます．しかし，データフレームの名前を実行すると，データフレームの中身が全て出力されるので見づらいです．<code>head()</code>関数を用いれば，データフレームのはじめ数行だけを表示することができます．また，<code>View()</code>関数を用いると，表形式でデータフレームの中身を確認することもできます．</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1" aria-hidden="true" tabindex="-1"></a>mydata</span>
+<span id="cb13-2"><a href="intro.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydata)</span>
+<span id="cb13-3"><a href="intro.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(mydata)</span></code></pre></div>
+</div>
+<div id="サブセッティング" class="section level3 hasAnchor" number="1.3.7">
+<h3><span class="header-section-number">1.3.7</span> サブセッティング<a href="intro.html#サブセッティング" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rでは，データセットを<strong>データフレーム</strong>として扱います．データフレームの<strong>列</strong>(column)には名前が付いています．その列名を<strong>変数名</strong>と呼ぶこともあります．列名を見るには<code>colnames()</code>関数が便利です．</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intro.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mydata)</span>
+<span id="cb14-2"><a href="intro.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;X&quot;      &quot;salary&quot; &quot;educ&quot;   &quot;abili&quot;  &quot;iq&quot;     &quot;female&quot; &quot;age&quot;    &quot;exper&quot;</span></span></code></pre></div>
+<p>データフレームの中から，ある変数(列)だけを取り出したい場合があります．その際には，<code>$</code>というサブセッティング演算子を用います．<code>salary</code>という変数だけを取り出してみましょう．</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>salary</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introintro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summarization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

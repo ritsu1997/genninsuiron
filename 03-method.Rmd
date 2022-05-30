@@ -1,0 +1,89 @@
+# データを要約する{#summarization}
+
+本章では，平均値や分散，相関係数などの基本的な統計学を復習します．
+
+## 平均値
+
+平均値を求めるには`mean()`関数を用います．`mean()`関数の引数はベクトルでなくてはなりません．
+
+```{r include=FALSE}
+mydata <- read.csv("wage.csv")
+```
+
+
+```{r eval=FALSE}
+mean(mydata) # mydataはベクトルではなく，データフレームなのでエラーになります
+```
+次のように平均値を求めたい変数をサブセッティングして，ベクトルにする必要があります．
+
+```{r collapse=TRUE}
+mean(mydata$salary)
+mean(mydata$educ)
+```
+## 分散
+
+分散を求めるには`var()`関数を用います．分散はデータのばらつきを把握するための統計量です^[厳密には`var()`関数は不偏分散です．]．
+
+```{r collapse=TRUE}
+var(mydata$salary)
+var(mydata$educ)
+```
+
+## 標準偏差
+
+分散は単位が2乗になっているので少しわかりづらいです．なので，分散の平方根をとって単位の次数を減らしたものが標準偏差です．標準偏差を求めるには`sd()`関数を用います．
+
+```{r collapse=TRUE}
+sd(mydata$salary)
+```
+
+## ヒストグラム
+
+図によってデータの分布を確認するには，**ヒストグラム**を用いるのが便利です．ヒストグラムを作図するには`hist()`関数を用います．
+
+```{r collapse=TRUE}
+hist(mydata$salary)
+```
+
+`hist()`関数には複数の引数があり，それらを指定することで見た目を変えることができます．
+
+```{r collapse=TRUE}
+hist(mydata$salary, col = "lightblue", main = "Histogram of Salary", xlab = "Salary")
+```
+
+## 散布図
+
+2つの変数の関係を図で確認するためには，**散布図**を用いるのが便利です．散布図を作成するには`plot()`関数を使います．今わたしたちは，教育と年収の関係性に関心があるとしましょう．`educ`と年収`salary`の関係を次のように図示できます．
+
+```{r collapse=TRUE}
+plot(mydata$educ, mydata$salary, main = "Salary and Education", xlab = "Years of Education", ylab = "Salary")
+```
+
+```{exercise}
+次のことを考えてみてください．
+
+(1) どのような関係が見て取れますか？
+(2) そのような関係はどのようなメカニズム生じるのでしょうか？
+(3) それは因果関係と言えるでしょうか？
+(4) 3で，そのように答えた理由は何ですか？
+```
+
+
+## 相関係数
+
+**相関係数**は，2つの変数の直線的な関係の強さを表します．相関係数$\rho$は，$-1 \leq \rho \leq1$の値を取ります．2つの変数の直線的な関係は，0に近いほど弱く，絶対値が1に近いほど強いです．相関係数が正のとき($\rho>0$)，散布図は右上がりの分布を描きます．相関係数が負のとき($\rho<0$)，散布図は右下がりの分布を描きます．
+
+Rでは`cor()`関数を用いることで，相関係数を求めることができます．`educ`と`salary`の相関係数は`r round(cor(mydata$educ, mydata$salary), digits = 3)`です．
+
+```{r collapse=TRUE}
+cor(mydata$educ, mydata$salary)
+```
+
+```{exercise}
+`wage.csv`のデータについて，次の指示に従ってください．
+
+(1) 年齢(`age`)の平均，分散，標準偏差を求めてください．また，`age`のヒストグラムを作成してください．
+(2) 年齢(`age`)と年収(`salary`)の散布図を描いて，さらに相関係数を求めてください．
+(3) 2の結果について考察しなさい． 
+```
+

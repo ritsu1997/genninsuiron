@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>チャプター9 文献案内 | 『Rによる原因を推論する』</title>
+  <meta name="description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="チャプター9 文献案内 | 『Rによる原因を推論する』" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/gennin.png" />
+  <meta property="og:description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="github-repo" content="https://github.com/ritsu1997/genninsuiron" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="チャプター9 文献案内 | 『Rによる原因を推論する』" />
+  
+  <meta name="twitter:description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="twitter:image" content="/gennin.png" />
+
+<meta name="author" content="北川 梨津，原 健人" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gennin.png" />
+  <link rel="shortcut icon" href="gennin.png" type="image/x-icon" />
+<link rel="prev" href="quiz.html"/>
+<link rel="next" href="postscript.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">『Rによる原因を推論する』</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>久米ゼミにようこそ！</a></li>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html"><i class="fa fa-check"></i>はじめる前に</a>
+<ul>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html#おことわり"><i class="fa fa-check"></i>おことわり</a></li>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html#著者について"><i class="fa fa-check"></i>著者について</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#r言語とは"><i class="fa fa-check"></i><b>1.1</b> R言語とは</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#rstudioとは"><i class="fa fa-check"></i><b>1.2</b> RStudioとは</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#四則演算"><i class="fa fa-check"></i><b>1.3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#文字列"><i class="fa fa-check"></i><b>1.3.2</b> 文字列</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#割り当て演算"><i class="fa fa-check"></i><b>1.3.3</b> 割り当て演算</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#ベクトル"><i class="fa fa-check"></i><b>1.3.4</b> ベクトル</a></li>
+<li class="chapter" data-level="1.3.5" data-path="intro.html"><a href="intro.html#ベクトルの演算"><i class="fa fa-check"></i><b>1.3.5</b> ベクトルの演算</a></li>
+<li class="chapter" data-level="1.3.6" data-path="intro.html"><a href="intro.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.3.6</b> csvファイルの読み込み</a></li>
+<li class="chapter" data-level="1.3.7" data-path="intro.html"><a href="intro.html#サブセッティング"><i class="fa fa-check"></i><b>1.3.7</b> サブセッティング</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="summarization.html"><a href="summarization.html"><i class="fa fa-check"></i><b>2</b> データを要約する</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="summarization.html"><a href="summarization.html#平均値"><i class="fa fa-check"></i><b>2.1</b> 平均値</a></li>
+<li class="chapter" data-level="2.2" data-path="summarization.html"><a href="summarization.html#分散"><i class="fa fa-check"></i><b>2.2</b> 分散</a></li>
+<li class="chapter" data-level="2.3" data-path="summarization.html"><a href="summarization.html#標準偏差"><i class="fa fa-check"></i><b>2.3</b> 標準偏差</a></li>
+<li class="chapter" data-level="2.4" data-path="summarization.html"><a href="summarization.html#ヒストグラム"><i class="fa fa-check"></i><b>2.4</b> ヒストグラム</a></li>
+<li class="chapter" data-level="2.5" data-path="summarization.html"><a href="summarization.html#散布図"><i class="fa fa-check"></i><b>2.5</b> 散布図</a></li>
+<li class="chapter" data-level="2.6" data-path="summarization.html"><a href="summarization.html#相関係数"><i class="fa fa-check"></i><b>2.6</b> 相関係数</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>3</b> 回帰分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regression.html"><a href="regression.html#回帰分析とは"><i class="fa fa-check"></i><b>3.1</b> 回帰分析とは</a></li>
+<li class="chapter" data-level="3.2" data-path="regression.html"><a href="regression.html#単回帰分析"><i class="fa fa-check"></i><b>3.2</b> 単回帰分析</a></li>
+<li class="chapter" data-level="3.3" data-path="regression.html"><a href="regression.html#最小二乗法"><i class="fa fa-check"></i><b>3.3</b> 最小二乗法</a></li>
+<li class="chapter" data-level="3.4" data-path="regression.html"><a href="regression.html#重回帰分析"><i class="fa fa-check"></i><b>3.4</b> 重回帰分析</a></li>
+<li class="chapter" data-level="3.5" data-path="regression.html"><a href="regression.html#回帰分析と因果推論"><i class="fa fa-check"></i><b>3.5</b> 回帰分析と因果推論</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="test.html"><a href="test.html"><i class="fa fa-check"></i><b>4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="test.html"><a href="test.html#誤差でゴサいます"><i class="fa fa-check"></i><b>4.1</b> 誤差で”ゴサ”います？</a></li>
+<li class="chapter" data-level="4.2" data-path="test.html"><a href="test.html#す桃じゃないよp値だよ"><i class="fa fa-check"></i><b>4.2</b> す桃じゃないよ，p値だよ</a></li>
+<li class="chapter" data-level="4.3" data-path="test.html"><a href="test.html#有意ある意味ね"><i class="fa fa-check"></i><b>4.3</b> 有意，“ある”意味ね？</a></li>
+<li class="chapter" data-level="4.4" data-path="test.html"><a href="test.html#始めようか天体観測"><i class="fa fa-check"></i><b>4.4</b> 始めようか天体観測</a></li>
+<li class="chapter" data-level="4.5" data-path="test.html"><a href="test.html#ほうき星を探して"><i class="fa fa-check"></i><b>4.5</b> ほうき星を探して</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regtech.html"><a href="regtech.html"><i class="fa fa-check"></i><b>5</b> 回帰分析のテクニック (準備中)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regtech.html"><a href="regtech.html#ダミー変数"><i class="fa fa-check"></i><b>5.1</b> ダミー変数</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="regtech.html"><a href="regtech.html#ダミー変数ってなんだ"><i class="fa fa-check"></i><b>5.1.1</b> ダミー変数ってなんだ？</a></li>
+<li class="chapter" data-level="5.1.2" data-path="regtech.html"><a href="regtech.html#ダミー変数を用いた分析"><i class="fa fa-check"></i><b>5.1.2</b> ダミー変数を用いた分析</a></li>
+<li class="chapter" data-level="5.1.3" data-path="regtech.html"><a href="regtech.html#ダミー変数を用いるメリットとデメリット"><i class="fa fa-check"></i><b>5.1.3</b> ダミー変数を用いるメリットとデメリット</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="regtech.html"><a href="regtech.html#交差項"><i class="fa fa-check"></i><b>5.2</b> 交差項</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="regtech.html"><a href="regtech.html#交差させると見えてくる"><i class="fa fa-check"></i><b>5.2.1</b> 交差させると見えてくる</a></li>
+<li class="chapter" data-level="5.2.2" data-path="regtech.html"><a href="regtech.html#ダミー変数-量的変数"><i class="fa fa-check"></i><b>5.2.2</b> ダミー変数 × 量的変数</a></li>
+<li class="chapter" data-level="5.2.3" data-path="regtech.html"><a href="regtech.html#ダミー変数-ダミー変数"><i class="fa fa-check"></i><b>5.2.3</b> ダミー変数 × ダミー変数</a></li>
+<li class="chapter" data-level="5.2.4" data-path="regtech.html"><a href="regtech.html#量的変数-量的変数"><i class="fa fa-check"></i><b>5.2.4</b> 量的変数 × 量的変数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="regtech.html"><a href="regtech.html#多項式回帰"><i class="fa fa-check"></i><b>5.3</b> 多項式回帰</a></li>
+<li class="chapter" data-level="5.4" data-path="regtech.html"><a href="regtech.html#対数変換"><i class="fa fa-check"></i><b>5.4</b> 対数変換</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regtech.html"><a href="regtech.html#対数を使うとき"><i class="fa fa-check"></i><b>5.4.1</b> 対数を使うとき</a></li>
+<li class="chapter" data-level="5.4.2" data-path="regtech.html"><a href="regtech.html#対数の解釈"><i class="fa fa-check"></i><b>5.4.2</b> 対数の解釈</a></li>
+<li class="chapter" data-level="5.4.3" data-path="regtech.html"><a href="regtech.html#対数の変数を用いた分析"><i class="fa fa-check"></i><b>5.4.3</b> 対数の変数を用いた分析</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="regtech.html"><a href="regtech.html#パネルデータ"><i class="fa fa-check"></i><b>5.5</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="regtech.html"><a href="regtech.html#パネルデータとは何か"><i class="fa fa-check"></i><b>5.5.1</b> パネルデータとは何か</a></li>
+<li class="chapter" data-level="5.5.2" data-path="regtech.html"><a href="regtech.html#パネルデータを用いるメリット"><i class="fa fa-check"></i><b>5.5.2</b> パネルデータを用いるメリット</a></li>
+<li class="chapter" data-level="5.5.3" data-path="regtech.html"><a href="regtech.html#パネルデータ分析プールドols"><i class="fa fa-check"></i><b>5.5.3</b> パネルデータ分析：プールドOLS</a></li>
+<li class="chapter" data-level="5.5.4" data-path="regtech.html"><a href="regtech.html#パネルデータ分析固定効果モデル"><i class="fa fa-check"></i><b>5.5.4</b> パネルデータ分析：固定効果モデル</a></li>
+<li class="chapter" data-level="5.5.5" data-path="regtech.html"><a href="regtech.html#パネルデータ分析ランダム効果モデル"><i class="fa fa-check"></i><b>5.5.5</b> パネルデータ分析：ランダム効果モデル</a></li>
+<li class="chapter" data-level="5.5.6" data-path="regtech.html"><a href="regtech.html#固定なのランダムなの"><i class="fa fa-check"></i><b>5.5.6</b> 固定なの？ランダムなの？</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete.html"><a href="discrete.html"><i class="fa fa-check"></i><b>6</b> 離散選択モデル（準備中）</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete.html"><a href="discrete.html#離れて散り散り"><i class="fa fa-check"></i><b>6.1</b> 離れて散り散り？！</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete.html"><a href="discrete.html#確率線形モデル"><i class="fa fa-check"></i><b>6.2</b> 確率線形モデル</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete.html"><a href="discrete.html#ロジット回帰"><i class="fa fa-check"></i><b>6.3</b> ロジット回帰</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete.html"><a href="discrete.html#プロビット回帰"><i class="fa fa-check"></i><b>6.4</b> プロビット回帰</a></li>
+<li class="chapter" data-level="6.5" data-path="discrete.html"><a href="discrete.html#最尤推定"><i class="fa fa-check"></i><b>6.5</b> 最尤推定</a></li>
+<li class="chapter" data-level="6.6" data-path="discrete.html"><a href="discrete.html#順序"><i class="fa fa-check"></i><b>6.6</b> 順序</a></li>
+<li class="chapter" data-level="6.7" data-path="discrete.html"><a href="discrete.html#多項"><i class="fa fa-check"></i><b>6.7</b> 多項</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="textual.html"><a href="textual.html"><i class="fa fa-check"></i><b>7</b> 計量テキスト分析（準備中）</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="textual.html"><a href="textual.html#テキストデータとは"><i class="fa fa-check"></i><b>7.1</b> テキストデータとは</a></li>
+<li class="chapter" data-level="7.2" data-path="textual.html"><a href="textual.html#quantedaは久遠ってんだ"><i class="fa fa-check"></i><b>7.2</b> Quantedaは久遠ってんだ？！</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quiz.html"><a href="quiz.html"><i class="fa fa-check"></i><b>8</b> 演習問題</a></li>
+<li class="chapter" data-level="9" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>9</b> 文献案内</a></li>
+<li class="chapter" data-level="" data-path="postscript.html"><a href="postscript.html"><i class="fa fa-check"></i>ちょっと短い，少し個人的な，あとがき</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">『Rによる原因を推論する』</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reference" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">チャプター9</span> 文献案内<a href="reference.html#reference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>さらに学びを深めたい読者のために，いくつかの文献を紹介します．ちなみに，経済学者の黒川博文先生(<a href="https://twitter.com/kurodotty">Twitter:<code>@kurodotty</code></a>)がさまざまな因果推論の文献をまとめてくれたありがたいリストを公開しています(<a href="https://sites.google.com/site/hirofumikurokawa/home/causal_inference">因果推論のための計量経済学</a>)．こちらも大いに参考にしてください．Twitterで<code>#因果推論本の読む順番</code>というハッシュタグで検索するといろんな賢い人々が読書の道しるべを示してくれます．</p>
+<p><strong>因果推論入門</strong></p>
+<ul>
+<li><a href="https://www.amazon.co.jp/%E3%80%8C%E5%8E%9F%E5%9B%A0%E3%81%A8%E7%B5%90%E6%9E%9C%E3%80%8D%E3%81%AE%E7%B5%8C%E6%B8%88%E5%AD%A6%E2%80%95%E2%80%95%E2%80%95%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8B%E3%82%89%E7%9C%9F%E5%AE%9F%E3%82%92%E8%A6%8B%E6%8A%9C%E3%81%8F%E6%80%9D%E8%80%83%E6%B3%95-%E4%B8%AD%E5%AE%A4%E7%89%A7%E5%AD%90/dp/447803947X">中室牧子・津川友介（2017）『「原因と結果」の経済学：データから真実を見抜く思考法』ダイヤモンド社．</a></li>
+<li><a href="https://www.amazon.co.jp/%E3%83%87%E3%83%BC%E3%82%BF%E5%88%86%E6%9E%90%E3%81%AE%E5%8A%9B-%E5%9B%A0%E6%9E%9C%E9%96%A2%E4%BF%82%E3%81%AB%E8%BF%AB%E3%82%8B%E6%80%9D%E8%80%83%E6%B3%95-%E5%85%89%E6%96%87%E7%A4%BE%E6%96%B0%E6%9B%B8-%E4%BC%8A%E8%97%A4-%E5%85%AC%E4%B8%80%E6%9C%97/dp/4334039863/ref=pd_sbs_14_t_0/355-9316741-5371232?_encoding=UTF8&amp;pd_rd_i=4334039863&amp;pd_rd_r=9b8f2c76-69b1-4385-b201-587c3fc3a0ff&amp;pd_rd_w=IDmTg&amp;pd_rd_wg=nz6GF&amp;pf_rd_p=ca22fd73-0f1e-4b39-9917-c84a20b3f3a8&amp;pf_rd_r=FBR58YE28D39D7A13KVN&amp;psc=1&amp;refRID=FBR58YE28D39D7A13KVN">伊藤公一朗（2017）『データ分析の力：因果関係に迫る思考法』光文社．</a></li>
+</ul>
+<p>中室・津川（2017）も伊藤（2017）も，因果推論の重要性を平易に解説しています．どちらも具体例を交えながら，因果推論の代表的な手法を概説してくれるので，入門書としてぴったりです．とりわけ，中室・津川（2017）は興味深いです．中室・津川（2017）の中で紹介される因果関係の３条件は『原因を推論する』における因果関係の３条件と異なります．その違いについて考えてみることは因果推論の理解を試す良い訓練になります．いずれも数式はほとんど出てきません．</p>
+<p><strong>因果推論中級</strong></p>
+<ul>
+<li><a href="https://www.amazon.co.jp/%E6%94%BF%E7%AD%96%E8%A9%95%E4%BE%A1%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%9B%A0%E6%9E%9C%E9%96%A2%E4%BF%82%E3%81%AE%E8%A6%8B%E3%81%A4%E3%81%91%E6%96%B9-%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0%E5%8C%96%E6%AF%94%E8%BC%83%E8%A9%A6%E9%A8%93%E5%85%A5%E9%96%80-%E3%82%A8%E3%82%B9%E3%83%86%E3%83%AB%E3%83%BB%E3%83%87%E3%83%A5%E3%83%95%E3%83%AD/dp/4535559341/ref=pd_sbs_14_7?_encoding=UTF8&amp;pd_rd_i=4535559341&amp;pd_rd_r=b93c3f7c-912a-4329-bc57-6466e20362a5&amp;pd_rd_w=K2syT&amp;pd_rd_wg=0cws1&amp;pf_rd_p=1585d594-d9d0-474b-8a4e-69eca1566911&amp;pf_rd_r=5PMG4SJMPFPWXTTYWZX6&amp;psc=1&amp;refRID=5PMG4SJMPFPWXTTYWZX6">E.デュフロ・R.グレナスター・M.クレーマー（2019）『政策評価のための因果関係の見つけ方：ランダム化比較試験入門』（小林庸平 監訳）日本評論社．</a></li>
+<li><a href="https://www.amazon.co.jp/%E3%80%8C%E3%81%BB%E3%81%A8%E3%82%93%E3%81%A9%E7%84%A1%E5%AE%B3%E3%80%8D%E3%81%AA%E8%A8%88%E9%87%8F%E7%B5%8C%E6%B8%88%E5%AD%A6%E2%80%95%E5%BF%9C%E7%94%A8%E7%B5%8C%E6%B8%88%E5%AD%A6%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%AE%9F%E8%A8%BC%E5%88%86%E6%9E%90%E3%82%AC%E3%82%A4%E3%83%89-%E3%83%A8%E3%82%B7%E3%83%A5%E3%82%A2%E3%83%BB%E3%82%A2%E3%83%B3%E3%82%B0%E3%83%AA%E3%82%B9%E3%83%88/dp/4757122519/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&amp;keywords=%E3%81%BB%E3%81%A8%E3%82%93%E3%81%A9%E7%84%A1%E5%AE%B3%E3%81%AA&amp;qid=1582164704&amp;sr=8-1">J.アングリスト・J.ピスケ（2013）『「ほとんど無害」な計量経済学―応用経済学のための実証分析ガイド』（大森義明・田中隆一・野口晴子 訳）NTT出版</a></li>
+</ul>
+<p>いずれもより本格的な因果推論の教科書です．数式が出てくるので少ししんどいかもですが，デュフロ他（2019）に関しては，意外と薄いのでなんとかなります．ちなみに，著者の一人であるデュフロは2019年のノーベル経済学賞受賞者です．因果効果を形式的に定義することの便利さを体感してください．アングリスト・ピスケ（2013）もとても有名な教科書です．</p>
+<p><strong>R入門</strong></p>
+<ul>
+<li><a href="https://www.amazon.co.jp/%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AERStudio-%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E3%81%AA%E3%82%93%E3%81%8B%E3%81%93%E3%82%8F%E3%81%8F%E3%81%AA%E3%81%84-%E6%B5%85%E9%87%8E-%E6%AD%A3%E5%BD%A6/dp/4274222934/ref=pd_sim_14_2/355-9316741-5371232?_encoding=UTF8&amp;pd_rd_i=4274222934&amp;pd_rd_r=0ee23bda-63d4-4966-a11d-eae86dfc914d&amp;pd_rd_w=zVEum&amp;pd_rd_wg=K78Ux&amp;pf_rd_p=51d7f721-ab31-4c99-8db8-c3f45803167a&amp;pf_rd_r=N8GPYA4CCTZ17S3D2Y3Y&amp;psc=1&amp;refRID=N8GPYA4CCTZ17S3D2Y3Y">浅野正彦・中村公亮（2018）『はじめてのRStudio: エラーメッセージなんかこわくない』オーム社．</a></li>
+</ul>
+<p>邦書の中では，最も読み手に対する優しさを感じさせてくれるRとRStudioの入門書です．ただ，この教科書を読んだ後でも，エラーメッセージはやっぱりこわいです．また，著者であり政治学者である浅野正彦先生(<a href="https://twitter.com/asanoucla">Twitter:<code>@asanoucla</code></a>)の研究には興味深いものが多いので要チェックです．</p>
+<p><strong>Rと計量分析</strong></p>
+<ul>
+<li><a href="https://www.amazon.co.jp/R%E3%81%AB%E3%82%88%E3%82%8B%E8%A8%88%E9%87%8F%E6%94%BF%E6%B2%BB%E5%AD%A6-%E6%B5%85%E9%87%8E-%E6%AD%A3%E5%BD%A6/dp/4274223132">浅野正彦・矢内勇生（2019）『Rによる計量政治学』オーム社．</a></li>
+<li><a href="https://www.amazon.co.jp/R%E3%81%AB%E3%82%88%E3%82%8B%E5%AE%9F%E8%A8%BC%E5%88%86%E6%9E%90-%E2%80%95%E5%9B%9E%E5%B8%B0%E5%88%86%E6%9E%90%E3%81%8B%E3%82%89%E5%9B%A0%E6%9E%9C%E5%88%86%E6%9E%90%E3%81%B8%E2%80%95-%E6%98%9F%E9%87%8E%E5%8C%A1%E9%83%8E/dp/427421947X">星野匡郎・田中久稔（2016）『Rによる実証分析：回帰分析から因果分析へ』オーム社</a></li>
+<li><a href="https://www.amazon.co.jp/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%88%86%E6%9E%90%E5%85%A5%E9%96%80-%E4%B8%8A-%E4%BB%8A%E4%BA%95-%E8%80%95%E4%BB%8B/dp/400061245X/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&amp;keywords=R%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6&amp;qid=1575790114&amp;s=books&amp;sr=1-1">今井耕介（2018）『社会科学のためのデータ分析入門（上）』（粕谷裕子・原田勝孝・久保浩樹 翻訳）岩波書店</a></li>
+<li><a href="https://www.amazon.co.jp/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%88%86%E6%9E%90%E5%85%A5%E9%96%80-%E4%B8%8B-%E4%BB%8A%E4%BA%95-%E8%80%95%E4%BB%8B/dp/4000612468/ref=pd_bxgy_14_img_2/355-9316741-5371232?_encoding=UTF8&amp;pd_rd_i=4000612468&amp;pd_rd_r=33ebd4f3-d625-4f8e-b6e8-2ad337ab45fb&amp;pd_rd_w=5UnVP&amp;pd_rd_wg=d4J1e&amp;pf_rd_p=b25bd748-082b-4f2a-b724-125316a35a9c&amp;pf_rd_r=QZ2KRTJJ770CT44Y43A9&amp;psc=1&amp;refRID=QZ2KRTJJ770CT44Y43A9">今井耕介（2018）『社会科学のためのデータ分析入門（下）』（粕谷裕子・原田勝孝・久保浩樹 翻訳）岩波書店</a></li>
+<li><a href="https://www.amazon.co.jp/dp/4297111179/ref=sspa_dk_detail_0?psc=1&amp;spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyRE5QMDdORVlSMjg4JmVuY3J5cHRlZElkPUEwMDU1MzY4MVVDUjFMWkhMN0lOTSZlbmNyeXB0ZWRBZElkPUEzQUFWVzkzRkRKNUdWJndpZGdldE5hbWU9c3BfZGV0YWlsJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==">安井翔太（2020）『効果検証入門〜正しい比較のための因果推論/計量経済学の基礎』（株式会社ホクソエム 監修）技術評論社</a></li>
+</ul>
+<p>浅野・矢内（2019）は非常におすすめです．政治学徒のみならず，経済学徒にも使いやすい教科書です．星野・田中（2016）も定番な感じがあって，おすすめです．今井（2018）は，Rによる計量分析の世界的標準とも言える入門書です．ちなみに今井耕介先生は，一部からは「世界のImai」と呼ばれたりするほどすごい因果推論の研究者です．安井（2020）はTwitterデータサイエンス・計量分析界隈でとても絶賛されて<del>いますが，わたしはまだ持っていないのでわかりません．でも，評判を見る限りはかなり良さそうです．</del>おり，わたしも読みましたがとても良かったです．著名な経済学者である大竹文雄先生(<a href="https://twitter.com/fohtake">Twitter:<code>@fohtake</code></a>)によると，浅野・矢内（2019）→安井（2020）と読み進めるのが良いらしいです．</p>
+<blockquote class="twitter-tweet">
+<p lang="ja" dir="ltr">
+<p>経済学部生で計量分析をしてみたい人に最初の一歩としておすすめです。→『Rによる計量政治学』と『効果検証入門』。前者でRに慣れて、後者でRを使った因果推論。</p>
+大竹文雄 (<code>@fohtake</code>) <a href="https://twitter.com/fohtake/status/1222434993080680449?ref_src=twsrc%5Etfw"> January 29, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p><a href="https://www.amazon.co.jp/%E7%B6%AD%E6%96%B0%E6%94%AF%E6%8C%81%E3%81%AE%E5%88%86%E6%9E%90-%E3%83%9D%E3%83%94%E3%83%A5%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%8B-%E6%9C%89%E6%A8%A9%E8%80%85%E3%81%AE%E5%90%88%E7%90%86%E6%80%A7%E3%81%8B-%E5%96%84%E6%95%99/dp/4641149275">『維新支持の分析ーポピュリズムか，有権者の合理性か』（有斐閣）</a>の業績によって第41回「サントリー学芸賞」を受賞された善教将大先生(<a href="https://twitter.com/MZenkyo?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1219412870955327490&amp;ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Fquery%3Dhttps%253A%252F%252Ftwitter.com%252FMZenkyo%252Fstatus%252F1219412870955327490%26widget%3DTweet">Twitter:<code>@MZenkyo</code></a>)も，安井（2020）をおすすめしています．</p>
+<blockquote class="twitter-tweet">
+<p lang="ja" dir="ltr">
+『効果検証入門』は、最近読んだ本の中で、Rでの実践も含め、因果推論入門編の教科書としては一番よかった。<a href="https://t.co/jWiMpWGphh">https://t.co/jWiMpWGphh</a>
+</p>
+— Masahiro Zenkyo (<code>@MZenkyo</code>) <a href="https://twitter.com/MZenkyo/status/1219412870955327490?ref_src=twsrc%5Etfw">January 21, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p><strong>統計学・計量分析</strong></p>
+<ul>
+<li><a href="https://www.amazon.co.jp/%E7%B5%B1%E8%A8%88%E5%AD%A6-%E6%94%B9%E8%A8%82%E7%89%88-Liberal-Arts-Selection/dp/4641053804/ref=sr_1_25?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&amp;keywords=%E7%B5%B1%E8%A8%88%E5%AD%A6&amp;qid=1582126166&amp;sr=8-25">森棟公夫・照井伸彦・中川満・西埜晴久・黒住英司（2015）『統計学』改訂版，有斐閣</a></li>
+<li><a href="https://www.amazon.co.jp/%E8%A8%88%E9%87%8F%E7%B5%8C%E6%B8%88%E5%AD%A6%E3%81%AE%E7%AC%AC%E4%B8%80%E6%AD%A9-%E5%AE%9F%E8%A8%BC%E5%88%86%E6%9E%90%E3%81%AE%E3%82%B9%E3%82%B9%E3%83%A1-%E6%9C%89%E6%96%90%E9%96%A3%E3%82%B9%E3%83%88%E3%82%A5%E3%83%87%E3%82%A3%E3%82%A2-%E7%94%B0%E4%B8%AD/dp/4641150281/ref=sr_1_3?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&amp;keywords=%E8%A8%88%E9%87%8F%E7%B5%8C%E6%B8%88%E5%AD%A6&amp;qid=1582126277&amp;sr=8-3">田中隆一（2015）『計量経済学の第一歩 – 実証分析のススメ』有斐閣</a></li>
+<li><a href="https://www.amazon.co.jp/%E8%A8%88%E9%87%8F%E7%B5%8C%E6%B8%88%E5%AD%A6-New-Liberal-Arts-Selection/dp/4641053855/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&amp;keywords=%E8%A8%88%E9%87%8F%E7%B5%8C%E6%B8%88%E5%AD%A6&amp;qid=1582126277&amp;sr=8-1">西山慶彦・新谷元嗣・川口大司・奥井亮（2019）『計量経済学』有斐閣</a></li>
+</ul>
+<p>森棟他（2015）は基本的な統計学を網羅しており便利です．フルカラーなので親しみやすく，読みやすいです．田中（2015）は読み手に非常に優しい計量経済学の入門書です．正しく「第一歩」に相応しい教科書です．西山他（2019）は計量経済学の代表的な手法を網羅しながら，簡潔で明快な解説がなされており，コンパクトで大変便利な一冊です．計量経済学の世界的標準の入門書としては，Wooldridgeの<em>Introductory Econometrics</em>がありますが，これよりも西山他（2019）の方が優れていると思います．英訳されてもおかしくないくらいの良書です．</p>
+<p><strong>大事なこと</strong></p>
+<p>計量分析に携わるのであれば，分析手法の力を磨くことはとても大事です．それはスポーツにおける基礎体力に対応するとも言えるでしょう．試合の途中に息切れしてしまっては困ります．とは言え，基礎体力の訓練ばかりしていて，実戦形式の練習を怠ってしまっては元も子もありません．実証家として生きていくならば，これらの本はあくまでも「よくできたクッキング・マニュアル」(『原因を推論する』，p.241)だということを忘れないようにしましょう．</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="quiz.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="postscript.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

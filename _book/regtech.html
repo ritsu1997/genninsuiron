@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>チャプター5 回帰分析のテクニック (準備中) | 『Rによる原因を推論する』</title>
+  <meta name="description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="チャプター5 回帰分析のテクニック (準備中) | 『Rによる原因を推論する』" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/gennin.png" />
+  <meta property="og:description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="github-repo" content="https://github.com/ritsu1997/genninsuiron" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="チャプター5 回帰分析のテクニック (準備中) | 『Rによる原因を推論する』" />
+  
+  <meta name="twitter:description" content="久米ゼミのプレゼミのための教材です." />
+  <meta name="twitter:image" content="/gennin.png" />
+
+<meta name="author" content="北川 梨津，原 健人" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gennin.png" />
+  <link rel="shortcut icon" href="gennin.png" type="image/x-icon" />
+<link rel="prev" href="test.html"/>
+<link rel="next" href="discrete.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">『Rによる原因を推論する』</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>久米ゼミにようこそ！</a></li>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html"><i class="fa fa-check"></i>はじめる前に</a>
+<ul>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html#おことわり"><i class="fa fa-check"></i>おことわり</a></li>
+<li class="chapter" data-level="" data-path="introintro.html"><a href="introintro.html#著者について"><i class="fa fa-check"></i>著者について</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#r言語とは"><i class="fa fa-check"></i><b>1.1</b> R言語とは</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#rstudioとは"><i class="fa fa-check"></i><b>1.2</b> RStudioとは</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#四則演算"><i class="fa fa-check"></i><b>1.3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#文字列"><i class="fa fa-check"></i><b>1.3.2</b> 文字列</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#割り当て演算"><i class="fa fa-check"></i><b>1.3.3</b> 割り当て演算</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#ベクトル"><i class="fa fa-check"></i><b>1.3.4</b> ベクトル</a></li>
+<li class="chapter" data-level="1.3.5" data-path="intro.html"><a href="intro.html#ベクトルの演算"><i class="fa fa-check"></i><b>1.3.5</b> ベクトルの演算</a></li>
+<li class="chapter" data-level="1.3.6" data-path="intro.html"><a href="intro.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.3.6</b> csvファイルの読み込み</a></li>
+<li class="chapter" data-level="1.3.7" data-path="intro.html"><a href="intro.html#サブセッティング"><i class="fa fa-check"></i><b>1.3.7</b> サブセッティング</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="summarization.html"><a href="summarization.html"><i class="fa fa-check"></i><b>2</b> データを要約する</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="summarization.html"><a href="summarization.html#平均値"><i class="fa fa-check"></i><b>2.1</b> 平均値</a></li>
+<li class="chapter" data-level="2.2" data-path="summarization.html"><a href="summarization.html#分散"><i class="fa fa-check"></i><b>2.2</b> 分散</a></li>
+<li class="chapter" data-level="2.3" data-path="summarization.html"><a href="summarization.html#標準偏差"><i class="fa fa-check"></i><b>2.3</b> 標準偏差</a></li>
+<li class="chapter" data-level="2.4" data-path="summarization.html"><a href="summarization.html#ヒストグラム"><i class="fa fa-check"></i><b>2.4</b> ヒストグラム</a></li>
+<li class="chapter" data-level="2.5" data-path="summarization.html"><a href="summarization.html#散布図"><i class="fa fa-check"></i><b>2.5</b> 散布図</a></li>
+<li class="chapter" data-level="2.6" data-path="summarization.html"><a href="summarization.html#相関係数"><i class="fa fa-check"></i><b>2.6</b> 相関係数</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>3</b> 回帰分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regression.html"><a href="regression.html#回帰分析とは"><i class="fa fa-check"></i><b>3.1</b> 回帰分析とは</a></li>
+<li class="chapter" data-level="3.2" data-path="regression.html"><a href="regression.html#単回帰分析"><i class="fa fa-check"></i><b>3.2</b> 単回帰分析</a></li>
+<li class="chapter" data-level="3.3" data-path="regression.html"><a href="regression.html#最小二乗法"><i class="fa fa-check"></i><b>3.3</b> 最小二乗法</a></li>
+<li class="chapter" data-level="3.4" data-path="regression.html"><a href="regression.html#重回帰分析"><i class="fa fa-check"></i><b>3.4</b> 重回帰分析</a></li>
+<li class="chapter" data-level="3.5" data-path="regression.html"><a href="regression.html#回帰分析と因果推論"><i class="fa fa-check"></i><b>3.5</b> 回帰分析と因果推論</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="test.html"><a href="test.html"><i class="fa fa-check"></i><b>4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="test.html"><a href="test.html#誤差でゴサいます"><i class="fa fa-check"></i><b>4.1</b> 誤差で”ゴサ”います？</a></li>
+<li class="chapter" data-level="4.2" data-path="test.html"><a href="test.html#す桃じゃないよp値だよ"><i class="fa fa-check"></i><b>4.2</b> す桃じゃないよ，p値だよ</a></li>
+<li class="chapter" data-level="4.3" data-path="test.html"><a href="test.html#有意ある意味ね"><i class="fa fa-check"></i><b>4.3</b> 有意，“ある”意味ね？</a></li>
+<li class="chapter" data-level="4.4" data-path="test.html"><a href="test.html#始めようか天体観測"><i class="fa fa-check"></i><b>4.4</b> 始めようか天体観測</a></li>
+<li class="chapter" data-level="4.5" data-path="test.html"><a href="test.html#ほうき星を探して"><i class="fa fa-check"></i><b>4.5</b> ほうき星を探して</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regtech.html"><a href="regtech.html"><i class="fa fa-check"></i><b>5</b> 回帰分析のテクニック (準備中)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regtech.html"><a href="regtech.html#ダミー変数"><i class="fa fa-check"></i><b>5.1</b> ダミー変数</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="regtech.html"><a href="regtech.html#ダミー変数ってなんだ"><i class="fa fa-check"></i><b>5.1.1</b> ダミー変数ってなんだ？</a></li>
+<li class="chapter" data-level="5.1.2" data-path="regtech.html"><a href="regtech.html#ダミー変数を用いた分析"><i class="fa fa-check"></i><b>5.1.2</b> ダミー変数を用いた分析</a></li>
+<li class="chapter" data-level="5.1.3" data-path="regtech.html"><a href="regtech.html#ダミー変数を用いるメリットとデメリット"><i class="fa fa-check"></i><b>5.1.3</b> ダミー変数を用いるメリットとデメリット</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="regtech.html"><a href="regtech.html#交差項"><i class="fa fa-check"></i><b>5.2</b> 交差項</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="regtech.html"><a href="regtech.html#交差させると見えてくる"><i class="fa fa-check"></i><b>5.2.1</b> 交差させると見えてくる</a></li>
+<li class="chapter" data-level="5.2.2" data-path="regtech.html"><a href="regtech.html#ダミー変数-量的変数"><i class="fa fa-check"></i><b>5.2.2</b> ダミー変数 × 量的変数</a></li>
+<li class="chapter" data-level="5.2.3" data-path="regtech.html"><a href="regtech.html#ダミー変数-ダミー変数"><i class="fa fa-check"></i><b>5.2.3</b> ダミー変数 × ダミー変数</a></li>
+<li class="chapter" data-level="5.2.4" data-path="regtech.html"><a href="regtech.html#量的変数-量的変数"><i class="fa fa-check"></i><b>5.2.4</b> 量的変数 × 量的変数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="regtech.html"><a href="regtech.html#多項式回帰"><i class="fa fa-check"></i><b>5.3</b> 多項式回帰</a></li>
+<li class="chapter" data-level="5.4" data-path="regtech.html"><a href="regtech.html#対数変換"><i class="fa fa-check"></i><b>5.4</b> 対数変換</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regtech.html"><a href="regtech.html#対数を使うとき"><i class="fa fa-check"></i><b>5.4.1</b> 対数を使うとき</a></li>
+<li class="chapter" data-level="5.4.2" data-path="regtech.html"><a href="regtech.html#対数の解釈"><i class="fa fa-check"></i><b>5.4.2</b> 対数の解釈</a></li>
+<li class="chapter" data-level="5.4.3" data-path="regtech.html"><a href="regtech.html#対数の変数を用いた分析"><i class="fa fa-check"></i><b>5.4.3</b> 対数の変数を用いた分析</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="regtech.html"><a href="regtech.html#パネルデータ"><i class="fa fa-check"></i><b>5.5</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="regtech.html"><a href="regtech.html#パネルデータとは何か"><i class="fa fa-check"></i><b>5.5.1</b> パネルデータとは何か</a></li>
+<li class="chapter" data-level="5.5.2" data-path="regtech.html"><a href="regtech.html#パネルデータを用いるメリット"><i class="fa fa-check"></i><b>5.5.2</b> パネルデータを用いるメリット</a></li>
+<li class="chapter" data-level="5.5.3" data-path="regtech.html"><a href="regtech.html#パネルデータ分析プールドols"><i class="fa fa-check"></i><b>5.5.3</b> パネルデータ分析：プールドOLS</a></li>
+<li class="chapter" data-level="5.5.4" data-path="regtech.html"><a href="regtech.html#パネルデータ分析固定効果モデル"><i class="fa fa-check"></i><b>5.5.4</b> パネルデータ分析：固定効果モデル</a></li>
+<li class="chapter" data-level="5.5.5" data-path="regtech.html"><a href="regtech.html#パネルデータ分析ランダム効果モデル"><i class="fa fa-check"></i><b>5.5.5</b> パネルデータ分析：ランダム効果モデル</a></li>
+<li class="chapter" data-level="5.5.6" data-path="regtech.html"><a href="regtech.html#固定なのランダムなの"><i class="fa fa-check"></i><b>5.5.6</b> 固定なの？ランダムなの？</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete.html"><a href="discrete.html"><i class="fa fa-check"></i><b>6</b> 離散選択モデル（準備中）</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete.html"><a href="discrete.html#離れて散り散り"><i class="fa fa-check"></i><b>6.1</b> 離れて散り散り？！</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete.html"><a href="discrete.html#確率線形モデル"><i class="fa fa-check"></i><b>6.2</b> 確率線形モデル</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete.html"><a href="discrete.html#ロジット回帰"><i class="fa fa-check"></i><b>6.3</b> ロジット回帰</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete.html"><a href="discrete.html#プロビット回帰"><i class="fa fa-check"></i><b>6.4</b> プロビット回帰</a></li>
+<li class="chapter" data-level="6.5" data-path="discrete.html"><a href="discrete.html#最尤推定"><i class="fa fa-check"></i><b>6.5</b> 最尤推定</a></li>
+<li class="chapter" data-level="6.6" data-path="discrete.html"><a href="discrete.html#順序"><i class="fa fa-check"></i><b>6.6</b> 順序</a></li>
+<li class="chapter" data-level="6.7" data-path="discrete.html"><a href="discrete.html#多項"><i class="fa fa-check"></i><b>6.7</b> 多項</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="textual.html"><a href="textual.html"><i class="fa fa-check"></i><b>7</b> 計量テキスト分析（準備中）</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="textual.html"><a href="textual.html#テキストデータとは"><i class="fa fa-check"></i><b>7.1</b> テキストデータとは</a></li>
+<li class="chapter" data-level="7.2" data-path="textual.html"><a href="textual.html#quantedaは久遠ってんだ"><i class="fa fa-check"></i><b>7.2</b> Quantedaは久遠ってんだ？！</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quiz.html"><a href="quiz.html"><i class="fa fa-check"></i><b>8</b> 演習問題</a></li>
+<li class="chapter" data-level="9" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>9</b> 文献案内</a></li>
+<li class="chapter" data-level="" data-path="postscript.html"><a href="postscript.html"><i class="fa fa-check"></i>ちょっと短い，少し個人的な，あとがき</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">『Rによる原因を推論する』</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regtech" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">チャプター5</span> 回帰分析のテクニック (準備中)<a href="regtech.html#regtech" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>本章は未完成です</strong></p>
+<p>本章では，回帰分析の際に有用なテクニックを紹介します．</p>
+<div id="ダミー変数" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> ダミー変数<a href="regtech.html#ダミー変数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ダミー変数ってなんだ" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> ダミー変数ってなんだ？<a href="regtech.html#ダミー変数ってなんだ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>ダミー変数(Dummy Variable)</strong>とは，ある特定の条件を満たす場合は1，その条件を満たさない場合は0をとる変数です．<strong>二値変数</strong>とも呼ばれます</p>
+<p>早速具体例を見てみましょう．</p>
+<p><span class="math display">\[
+female_i = \begin{cases} 1 &amp; \mbox{if } i\mbox{ is a female} \\ 0 &amp; \mbox{if } i\mbox{ is not a female} \end{cases}
+\]</span></p>
+<p>変数<span class="math inline">\(female\)</span>は，「個人<span class="math inline">\(i\)</span>がもし女性であれば1，女性でないならば0」をとるダミー変数です <a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>．</p>
+</div>
+<div id="ダミー変数を用いた分析" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> ダミー変数を用いた分析<a href="regtech.html#ダミー変数を用いた分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>実際にダミー変数を用いた重回帰分析を行ってみましょう．いま，「性別によって賃金(<span class="math inline">\(salary\)</span>)が異なる」という仮説を検証したいとしましょう．</p>
+<p>仮説の検証のためにチャプター3で用いたモデルに<span class="math inline">\(female\)</span>というダミー変数を追加して回帰分析を行います．モデル式は以下のように書くことができます．</p>
+<p><span class="math display">\[
+salary \ = \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4iq + {\beta}_5female + {\varepsilon}
+\]</span></p>
+<p>この式で<span class="math inline">\(female\)</span>は1か0のいずれかの値をとります．ここである個人が女性でない場合(<span class="math inline">\(female = 0\)</span>)を考えてみましょう．モデル式に<span class="math inline">\(female = 0\)</span>を代入するのでその項は消えてしまいますね．</p>
+<p><span class="math display">\[
+\begin{align}　\
+salary \ &amp;= \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4iq + {\beta}_5{\times}0 + {\varepsilon}\\
+&amp;= \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4iq + {\varepsilon}
+\end{align}
+\]</span></p>
+<p>では逆にある個人が女性である場合(<span class="math inline">\(female = 1\)</span>)を考えてみましょう．モデル式に<span class="math inline">\(female = 0\)</span>を代入してみます．</p>
+<p><span class="math display">\[
+\begin{align}　\
+salary \ &amp;= \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4iq + {\beta}_5{\times}1 + {\varepsilon}\\
+&amp;= \ ({\beta}_0 + {\beta}_5) +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4iq + {\varepsilon}
+\end{align}
+\]</span>
+<span class="math inline">\(female\)</span>の係数である<span class="math inline">\({\beta}_5\)</span>はそのまま残り，定数項<span class="math inline">\({\beta}_0\)</span>と足し合わせて新たな定数項<span class="math inline">\(({\beta}_0+{\beta}_5)\)</span>を作り出しています．すなわち，<span class="math inline">\(female\)</span>の係数は女性である場合とそうでない場合の切片の差であると解釈ができます．</p>
+<p>これを実際に分析してみましょう．コードは以下の通りに書くことができましたね．</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="regtech.html#cb33-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;wage2.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="regtech.html#cb34-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> salary <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> exper <span class="sc">+</span> iq <span class="sc">+</span> female, <span class="at">data =</span> mydata)</span>
+<span id="cb34-2"><a href="regtech.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(result)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = salary ~ educ + age + exper + iq + female, data = mydata)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-657.18 -142.67    4.35  141.53  602.75 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -1.797e+03  8.006e+01 -22.447  &lt; 2e-16 ***
+educ         1.598e+01  3.112e+00   5.134 3.41e-07 ***
+age          4.175e+00  1.323e+00   3.155  0.00165 ** 
+exper        1.901e-02  5.606e-01   0.034  0.97295    
+iq           2.357e+01  8.665e-01  27.198  &lt; 2e-16 ***
+female      -1.136e+01  1.310e+01  -0.867  0.38597    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 206.3 on 994 degrees of freedom
+Multiple R-squared:  0.6195,    Adjusted R-squared:  0.6176 
+F-statistic: 323.6 on 5 and 994 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>結果を見ると，<code>female</code>は5%水準で統計的有意性を示してはいません．すなわち，「他の変数を一定としたときに，女性であることは賃金<code>salary</code>に影響を与えているとは言えない」という結論を得ることができます．</p>
+</div>
+<div id="ダミー変数を用いるメリットとデメリット" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> ダミー変数を用いるメリットとデメリット<a href="regtech.html#ダミー変数を用いるメリットとデメリット" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ダミー変数を用いることにはどのようなメリットがあるでしょうか．一方で，安易にダミー変数を使うことによる問題は起こらないのでしょうか．</p>
+<p>メリットの方からまとめておきます．メリットとしては係数の解釈や，そこから得られるインプリケーションが明確であることが挙げられるでしょう．「既婚者であれば1, と独身者であれば0」をとるようなダミー変数として表して分析を行った場合，その結果におけるダミー変数の係数は「独身の人が結婚した場合に得られる影響そのもの」です．ダミー変数は0か1で対象を二つに分割するため，0と1の差だけ考えればよいという意味で解釈は容易でしょう．</p>
+<p>一方，安易にダミー変数を使ってしまうと問題が起こる可能性もあります．例えば「その国が民主主義体制なら1，権威主義体制なら0」というダミー変数を作って分析を行ったとします．確かにこの変数を使えば体制による従属変数への影響は明らかになるでしょう．しかしながら，一言に民主主義体制/権威主義体制と言ってもその中には様々な程度があります．ダミー変数ではこれらの差異までは表すことはできません．この代わりにFreedom House<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>の7点評価や，Polity IV Project<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>の10点評価の民主主義指数(Polity指数)で分析を行うことができれば，民主主義体制の国がさらに民主的になった場合や，権威主義体制の国がさらに権威主義を強めた場合の影響もとらえることができます．このようにダミー変数は，本来であれば測定できる影響を捨象してしまう可能性も含んでいる，「情報量の少ない変数」ということもできるでしょう．</p>
+</div>
+</div>
+<div id="交差項" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> 交差項<a href="regtech.html#交差項" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="交差させると見えてくる" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> 交差させると見えてくる<a href="regtech.html#交差させると見えてくる" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>これまで重回帰分析を学び，ダミー変数まで扱えるようになりました．新たに<strong>交差項</strong>（interaction term）という分析のツールを習得しましょう．</p>
+<p>交差項とは，変数同士を掛け合わせた変数のことをいいます．実際に交差項を入れたモデルの式を見てみましょう．</p>
+<p><span class="math display">\[
+salary \ = \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4female + {\beta}_5(educ{\times}female)+ {\varepsilon}
+\]</span></p>
+<p>この<span class="math inline">\((educ*female)\)</span>の項を交差項と呼びます．この項は何を表し，係数はどのように解釈をすればよいのでしょうか．交差項のタイプ別にみていくこととします．</p>
+<p>交差項は非常に強力なツールです．使いこなせて損はありませんが，その係数をどう解釈すればよいのかが時に複雑に思えるときがありますので，モデル式から「係数が何を表すのか」を確認しておきましょう．</p>
+</div>
+<div id="ダミー変数-量的変数" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> ダミー変数 × 量的変数<a href="regtech.html#ダミー変数-量的変数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ダミー変数と連続変数の交差項を考えてみます．例えば以下の交差項はダミー変数×連続変数の交差項です．</p>
+<p><span class="math display">\[
+salary \ = \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4female + {\beta}_5(educ{\times}female)+ {\varepsilon}
+\]</span></p>
+<p><span class="math inline">\(female\)</span>はこれまでの通り「女性であれば1, 女性でなければ0」という値をとるダミー変数です．一方で<span class="math inline">\(educ\)</span>はその人の受けた教育年数を表す量的変数です．この変数はどのような意味を持ち，係数はどのように解釈をすることができるでしょうか．<span class="math inline">\(female\)</span>が1をとる場合と<span class="math inline">\(female\)</span>が0をとる場合でモデルがどのように変化をするか見てみましょう．</p>
+<p>まずは<span class="math inline">\(female\)</span>が1をとる場合は以下のように計算できますね．</p>
+<p><span class="math display">\[
+\begin{align}　\
+salary \ &amp;= \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4{\times}1 + {\beta}_5(educ{\times}1) + {\varepsilon}\\
+&amp;= \ ({\beta}_0 + {\beta}_4) +  ({\beta}_1 +  {\beta}_5)educ + {\beta}_2age + {\beta}_3exper + {\varepsilon}
+\end{align}
+\]</span></p>
+<p><span class="math inline">\({\beta}_5\)</span>は前節で見た通り，定数項とまとめることができます．そして<span class="math inline">\({\beta}_6\)</span>は<span class="math inline">\(educ\)</span>でくくることができ，<span class="math inline">\(educ\)</span>の新たな係数として<span class="math inline">\(({\beta}_1 + {\beta}_6)\)</span>が現れます．交差項の係数<span class="math inline">\({\beta}_6\)</span>は，女性である場合<span class="math inline">\((female = 1)\)</span>と女性でない場合<span class="math inline">\((female = 0)\)</span>の変数<span class="math inline">\(educ\)</span>の従属変数に与える影響の違いである，と考えることができます．</p>
+<p>もしこの交差項の係数が有意に正の値をとるとすれば，「教育年数が一年増加することによる賃金への影響は男性より女性の方が大きい」ということになります．逆にこの係数が負の値をとるとすれば，「女性の場合は教育年数が一年増加しても，男性ほどは賃金が上がらない」と解釈することができます．</p>
+<p>それでは具体的にこのモデルで分析をしてみましょう．</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="regtech.html#cb36-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> salary <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> exper <span class="sc">+</span> female <span class="sc">+</span> educ<span class="sc">*</span>female, <span class="at">data =</span> mydata)</span>
+<span id="cb36-2"><a href="regtech.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = salary ~ educ + age + exper + female + educ * female, 
+    data = mydata)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-874.0 -191.2    9.8  186.7  998.5 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -62.5879    80.5933  -0.777   0.4376    
+educ          64.3475     4.6150  13.943   &lt;2e-16 ***
+age            3.7109     1.7450   2.127   0.0337 *  
+exper          0.1709     0.7392   0.231   0.8172    
+female      -156.2004    84.0250  -1.859   0.0633 .  
+educ:female   11.0907     6.3109   1.757   0.0792 .  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 272.1 on 994 degrees of freedom
+Multiple R-squared:  0.3383,    Adjusted R-squared:  0.335 
+F-statistic: 101.6 on 5 and 994 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>結果を見ると，10%の有意水準でしか差があることを言えないので，社会科学においては統計的に有意ではないと結論付けることになります．しかし，一応傾向としてだけでもいえることを言っておくと，<code>female</code>の変数は有意に負の結果が出ています．これは，女性であることは賃金に負の影響を与えるという結果です．</p>
+<p>そして今回の関心である<code>educ:female</code>の交差項を観察すると，正に有意である傾向を見て取る頃ができます(10%)．これは，「女性が教育年数を1年増加させたときに起こる賃金の上昇は，男性より大きい」というように解釈ができます．</p>
+<p>より詳しく見てみます．数式に実際に推定された値を入れて，<span class="math inline">\(female\)</span>が1の場合と0の場合を考えましょう．</p>
+<p><span class="math display">\[
+\begin{align}　\
+salary \ &amp;= \ -62.588 +  64.348educ + 3.711age + 0.171exper -156.200female + 11.091(educ{\times}female) + {\varepsilon}\\
+&amp;= \ (-62.588 -156.200) +  (64.348 + 11.091)educ + 3.711age + 0.171exper + {\varepsilon} \ \ \ (if \ female =1)\\
+&amp;= \ -62.588 +  64.348educ + 3.711age + 0.171exper + {\varepsilon} \ \ \ (if \ female =0)
+\end{align}
+\]</span></p>
+<p>それぞれの差が定数項と<code>educ</code>の係数の差となって表れていますね．男性の場合教育年数を1年増加させたときにおこる賃金の上昇は<code>64.348</code>ですが，女性の場合は<code>64.348 + 11.091 = 75.439</code>の上昇があると推定されているということです．</p>
+<p>グラフで見るとよりわかりやすくなるでしょう．</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="regtech.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in preparation</span></span></code></pre></div>
+</div>
+<div id="ダミー変数-ダミー変数" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> ダミー変数 × ダミー変数<a href="regtech.html#ダミー変数-ダミー変数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>次はダミー変数同士を掛け合わせたモデルを考えてみましょう．以下のモデルは<span class="math inline">\(female\)</span>というダミー変数と<span class="math inline">\(married\)</span>(既婚であれば1, 独身であれば0)をとるダミー変数を掛け合わせた交差項をモデルに組み込んでみましょう．モデルは以下の通りに書くことができます．</p>
+<p><span class="math display">\[
+salary \ = \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4female + {\beta}_5married + {\beta}_6(female{\times}married) + {\varepsilon}\\
+\]</span></p>
+<p>この二つのダミー変数がどのように変化するかを考えてみましょう．世の中には「女性の既婚者」「女性の独身者」「男性の既婚者」「男性の独身者」の4つのタイプが存在しますね．それぞれでダミー変数がどのような値をとるか考えてみましょう．</p>
+<p>まず，ためしに「男性の独身者」を考えてみます．男性なので<span class="math inline">\(female\)</span>は0です．そして独身者なので<span class="math inline">\(married\)</span>も0をとります．これらを代入するとモデル式は以下の通りになります．</p>
+<p><span class="math display">\[
+\begin{align} \\
+salary \ &amp;= \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4{\times}0 + {\beta}_5{\times}0 + {\beta}_6(0{\times}0) + {\varepsilon}\\
+&amp;= \ {\beta}_0 + {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\varepsilon}
+\end{align}
+\]</span></p>
+<p>次に「女性の既婚者」を考えます．女性なので<span class="math inline">\(female\)</span>は1をとり，既婚者なので<span class="math inline">\(married\)</span>も1です．このときモデルは以下のように書くことができます．</p>
+<p><span class="math display">\[
+\begin{align} \\
+salary \ &amp;= \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4{\times}1 + {\beta}_5{\times}1 + {\beta}_6(1{\times}1) + {\varepsilon}\\
+&amp;= \ ({\beta}_0 + {\beta}_4 +{\beta}_5 +{\beta}_6) + {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\varepsilon}
+\end{align}
+\]</span></p>
+<p>すなわち「男性の独身者」と「女性の既婚者」の賃金は，<span class="math inline">\(({\beta}_4 + {\beta}_5 + {\beta}_6)\)</span>の値だけ異なると言えるでしょう．</p>
+<p>このようにダミー変数×ダミー変数の交差項はその係数の解釈が少々複雑です．以下にそれぞれのタイプの効果をまとめておきます．</p>
+<table>
+<colgroup>
+<col width="63%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>グループ</th>
+<th>固有の係数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>独身男性<span class="math inline">\((female = 0, \ married = 0)\)</span></td>
+<td><span class="math inline">\({\beta}_0\)</span></td>
+</tr>
+<tr class="even">
+<td>既婚男性<span class="math inline">\((female = 0, \ married = 1)\)</span></td>
+<td><span class="math inline">\({\beta}_0 + {\beta}_5\)</span></td>
+</tr>
+<tr class="odd">
+<td>独身女性<span class="math inline">\((female = 1, \ married = 0)\)</span></td>
+<td><span class="math inline">\({\beta}_0 + {\beta}_4\)</span></td>
+</tr>
+<tr class="even">
+<td>既婚女性<span class="math inline">\((female = 1, \ married = 1)\)</span></td>
+<td><span class="math inline">\({\beta}_0 + {\beta}_4 + {\beta}_5 + {\beta}_6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>では実際に分析を行ってみましょう．</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="regtech.html#cb39-1" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> salary <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> exper <span class="sc">+</span> female <span class="sc">+</span> married <span class="sc">+</span> female<span class="sc">*</span>married, <span class="at">data =</span> mydata)</span>
+<span id="cb39-2"><a href="regtech.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm2)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = salary ~ educ + age + exper + female + married + 
+    female * married, data = mydata)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-820.1 -180.9    1.4  184.1  953.1 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    -164.8013    68.4481  -2.408   0.0162 *  
+educ             67.0685     3.1499  21.292  &lt; 2e-16 ***
+age               3.2031     1.7209   1.861   0.0630 .  
+exper             0.3694     0.7291   0.507   0.6125    
+female           10.5043    28.1859   0.373   0.7095    
+married         121.5582    26.4371   4.598 4.82e-06 ***
+female:married  -33.1835    35.3870  -0.938   0.3486    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 268 on 993 degrees of freedom
+Multiple R-squared:  0.3584,    Adjusted R-squared:  0.3545 
+F-statistic: 92.44 on 6 and 993 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>結果より，<code>married</code>は統計学的な有意性を示しますが，<code>female</code>と交差項<code>female:married</code>は統計的有意性を示していません．この結果はどのように解釈ができるでしょうか？</p>
+<p>まず<code>married</code>は正に有意なので，既婚者は独身者より賃金が高いという結論を得ることはできます．その一方で，<code>female</code>は有意ではないため，性別による賃金の差はないと考えられます．以上から「既婚状態は賃金に正に有意であるが，性別は賃金に有意な差を与えない」と結論できます．</p>
+</div>
+<div id="量的変数-量的変数" class="section level3 hasAnchor" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> 量的変数 × 量的変数<a href="regtech.html#量的変数-量的変数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>これまでダミー変数を用いた交差項について書いてきましたが，ダミー変数ではないもので交差項を作ることも可能です．例えば以下のようなモデルです．</p>
+<p><span class="math display">\[
+salary \ = \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + {\beta}_3exper + {\beta}_4female + {\beta}_5(educ{\times}exper)+ {\varepsilon}
+\]</span></p>
+<p>このモデルにおける項<span class="math inline">\((educ*exper)\)</span>は「量的変数×量的変数」の交差項です．この項をモデルに入れることでどんなことがわかるでしょうか．</p>
+<p>仮に今回は「仕事における経験年数(<span class="math inline">\(exper\)</span>)が賃金に与える影響」を知りたいとします．上記のモデルは<span class="math inline">\(exper\)</span>でくくると以下のように書くことができますね．</p>
+<p><span class="math display">\[
+salary \ = \ {\beta}_0 +  {\beta}_1educ + {\beta}_2age + ({\beta}_3 + {\beta}_5educ)exper + {\beta}_4female + {\varepsilon}
+\]</span></p>
+<p><span class="math inline">\(exper\)</span>という変数の係数は<span class="math inline">\(({\beta}_3 + {\beta}_5*educ)\)</span>です．すなわち，経験年数が1年増えると<span class="math inline">\(({\beta}_3 + {\beta}_5*educ)\)</span>の賃金が増えることになります．この中に<span class="math inline">\(educ\)</span>という変数が入っていますね．例えば<span class="math inline">\({\beta}_5\)</span>が正であるとしましょう．すると，<span class="math inline">\(({\beta}_3 + {\beta}_5*educ)\)</span>という係数は，<span class="math inline">\(educ\)</span>が大きくなればなるほど，大きなものになるとわかりますね．つまり，「教育年数が長いほど，経験年数の増加が賃金に与える影響は大きなものになる」と解釈ができるわけです．例えば具体的には，「高卒の人が1年経験年数が増加させたときの賃金への影響より，大卒の人が1年経験年数を増加させたときの賃金の影響の方が大きい」ということになります．</p>
+<p>逆に，<span class="math inline">\({\beta}_5\)</span>が負の場合は，その逆のことが起こります．「教育年数が短いほど，経験年数の増加が賃金に与える影響は大きなものになる」と解釈するわけです．</p>
+<p>これも実際に分析をしてみましょう．</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="regtech.html#cb41-1" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> salary <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> exper <span class="sc">+</span> female <span class="sc">+</span> educ<span class="sc">*</span>exper, <span class="at">data =</span> mydata)</span>
+<span id="cb41-2"><a href="regtech.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = salary ~ educ + age + exper + female + educ * exper, 
+##     data = mydata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -873.97 -188.35    8.26  185.67 1005.39 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -102.0106    96.2473  -1.060   0.2895    
+## educ          67.6021     5.9820  11.301   &lt;2e-16 ***
+## age            3.6015     1.7479   2.061   0.0396 *  
+## exper         -1.6239     3.4903  -0.465   0.6419    
+## female       -11.6805    17.2998  -0.675   0.4997    
+## educ:exper     0.1379     0.2620   0.526   0.5988    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 272.5 on 994 degrees of freedom
+## Multiple R-squared:  0.3365, Adjusted R-squared:  0.3331 
+## F-statistic: 100.8 on 5 and 994 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>結果は<code>educ</code>は有意に出ますが，<code>exper</code>と交差項である<code>educ:exper</code>は統計的有意性を示しません．これの解釈を行っていきましょう．まず，<code>educ</code>は正の影響と推定されているので，教育年数の増加は賃金に正の影響を与えます．<code>exper</code>は統計的有意性を示さないので，仕事の経験年数の増加は賃金上昇に影響を与えているわけではないと考えられます．そして，交差項である<code>educ:exper</code>が有意ではないということは，「教育程度が高いかどうかで，経験年数が賃金に与える影響には差がない」という解釈になります．</p>
+</div>
+</div>
+<div id="多項式回帰" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> 多項式回帰<a href="regtech.html#多項式回帰" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>多項式回帰(Polynomial Regression)</strong>とは，次数が2以上の項を含む回帰式です．ここでは2次の項が含まれる回帰式の分析について考えてみます．</p>
+<p>今までのモデルに2次の項を入れてみましょう．例えば以下のようなモデル式を考えます．</p>
+<p><span class="math display">\[
+salary \ = \ {\beta}_0 +  {\beta}_1educ + {\beta}_2female + {\beta}_3exper + {\beta}_3exper^2+ {\varepsilon}
+\]</span></p>
+<p>このモデルに含まれる<span class="math inline">\(exper^2\)</span>は2次の項であるので，これは多項式回帰モデルです．この項はどのような意味を持つでしょうか．</p>
+<p>経験年数が1年増加することを考えます．そのときの賃金の増加分は微分を行うことによって以下のように計算をできます．</p>
+<p><span class="math display">\[
+{\Delta}salary \ = \ {\beta}_3 + 2{\beta}_4exper
+\]</span></p>
+<p>もし，この<span class="math inline">\({\beta}_4\)</span>の係数が統計的に有意であれば，経験年数の増加が賃金に与える影響は経験年数によって異なるということです．例えば，経験年数が5年の人と経験年数が20年の人では，そこからさらに経験年数を積んだ場合に賃金に与える影響は異なることがあるかもしれません．多項式回帰はこのような現象を観察することができるツールです．</p>
+<p>それでは実際に分析を行ってみましょう．</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="regtech.html#cb43-1" aria-hidden="true" tabindex="-1"></a>expersq <span class="ot">&lt;-</span> mydata<span class="sc">$</span>exper<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb43-2"><a href="regtech.html#cb43-2" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> salary <span class="sc">~</span> educ <span class="sc">+</span> female <span class="sc">+</span> exper <span class="sc">+</span> expersq, <span class="at">data =</span> mydata)</span>
+<span id="cb43-3"><a href="regtech.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = salary ~ educ + female + exper + expersq, data = mydata)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -887.6 -187.3    8.4  189.8  975.5 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -58.14186   48.94014  -1.188    0.235    
+## educ         70.32900    3.15472  22.293   &lt;2e-16 ***
+## female      -11.61688   17.31254  -0.671    0.502    
+## exper         4.36462    2.94606   1.482    0.139    
+## expersq      -0.10412    0.07105  -1.465    0.143    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 272.6 on 995 degrees of freedom
+## Multiple R-squared:  0.3348, Adjusted R-squared:  0.3321 
+## F-statistic: 125.2 on 4 and 995 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="対数変換" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> 対数変換<a href="regtech.html#対数変換" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="対数を使うとき" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> 対数を使うとき<a href="regtech.html#対数を使うとき" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>対数変換はその名の通り，変数を対数(log)に変換をして分析を行うことです．一般的に，対数に変化させることでどのようなメリットがあるでしょうか．</p>
+</div>
+<div id="対数の解釈" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> 対数の解釈<a href="regtech.html#対数の解釈" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Coming Soon!</strong></p>
+</div>
+<div id="対数の変数を用いた分析" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> 対数の変数を用いた分析<a href="regtech.html#対数の変数を用いた分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Coming Soon!</strong></p>
+</div>
+</div>
+<div id="パネルデータ" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> パネルデータ<a href="regtech.html#パネルデータ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="パネルデータとは何か" class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> パネルデータとは何か<a href="regtech.html#パネルデータとは何か" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>一般的にデータは，「横断面データ(cross sectional data)」「時系列データ(time series data)」「パネルデータ(panel data)」の3つに分類されます．</p>
+<p><strong>横断面データ</strong>は一時点だけで切り取られたデータを言います．例えば，「2018年における，世界各国のGDP」というデータは，世界各国のGDPを「2018年」という一時点で切り取っています．</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="regtech.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#data viewing</span></span></code></pre></div>
+<p><strong>時系列データ</strong>はいくつもの時点における数値が観測されているデータのことを指します．例えば，「1998年から2018年までのアメリカ合衆国のGDP」は「アメリカ合衆国のGDP」というデータをいくつもの点で観測して並べることができていますね．</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="regtech.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#data viewing</span></span></code></pre></div>
+<p>そして今回扱う<strong>パネルデータ</strong>は，横断面データと時系列データが組み合わさって出来上がっているものと考えると理解しやすいでしょう．すなわち，「1998年から2018年までの世界各国のGDP」というデータはパネルデータです．</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="regtech.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#data viewing</span></span></code></pre></div>
+<p>前節までで扱っていたデータは全て横断面データでした．時系列データの扱いに関してはここでは割愛をしますが，パネルデータの扱いには慣れておくとよいでしょう．
+<img src="panel_data.png" alt="panel_data" /></p>
+</div>
+<div id="パネルデータを用いるメリット" class="section level3 hasAnchor" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> パネルデータを用いるメリット<a href="regtech.html#パネルデータを用いるメリット" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>どのような場合にパネルデータを使い，使うことでどんなメリットが得られるようになるでしょうか．それは大きく次の3点にまとめることができます．</p>
+<p>まず一つ目は，因果推論の条件の一つである『時間的先行』を調べることができるという点です．例えば，「教育への投資が経済成長に与える影響」を調べたいと思うとき，同じ年度の教育投資とGDPの関係を調べても，思うような結果を得ることは難しいでしょう．なぜなら，経済成長をしたために教育への投資を増やしているかもしれませんし（逆の因果関係），仮に教育投資が経済成長を引き起こすとしても，その効果がすぐに現れるとは考えにくいからです．この点をパネルデータを用いて解決することができます．説明変数を従属変数に対して前の時点にとればよいのです．例えば，5年前の教育投資の増加が今の経済成長を引き起こしているとわかれば，時間的先行は担保されていると考えることができます．</p>
+<p>二つ目は，データの数を増やすことができるという点です．例えば分析のレベルを国としたとき，運よくすべての国から目的のデータを得ることができたとしても観測数はn=200程度です．これが5つの時点から得ることができればn=1000まで増加します．もちろんこれに対する扱いは気をつけなければならないことがありますが（分析方法は後述します），これは大きなメリットでパネルデータを使うモチベーションの一つです．</p>
+<p>三つ目は，分析の対象に固有の効果を打ち消すことができるという点です．例えば，国レベルで分析を行いたいと考えたとき，操作化することができないような，それぞれの国で時間不変の固有の効果を打ち消すことができます．これは横断面データを使った分析よりもパワフルなものになることがあります．これもパネルデータを使うモチベーションのひとつです．</p>
+<p>では実際に分析の手法を見ていきましょう．それぞれの分析の特性を理解し，使い分けられるようになっていきましょう．</p>
+</div>
+<div id="パネルデータ分析プールドols" class="section level3 hasAnchor" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> パネルデータ分析：プールドOLS<a href="regtech.html#パネルデータ分析プールドols" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Coming Soon!</strong></p>
+</div>
+<div id="パネルデータ分析固定効果モデル" class="section level3 hasAnchor" number="5.5.4">
+<h3><span class="header-section-number">5.5.4</span> パネルデータ分析：固定効果モデル<a href="regtech.html#パネルデータ分析固定効果モデル" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Coming Soon!</strong></p>
+</div>
+<div id="パネルデータ分析ランダム効果モデル" class="section level3 hasAnchor" number="5.5.5">
+<h3><span class="header-section-number">5.5.5</span> パネルデータ分析：ランダム効果モデル<a href="regtech.html#パネルデータ分析ランダム効果モデル" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Coming Soon!</strong></p>
+</div>
+<div id="固定なのランダムなの" class="section level3 hasAnchor" number="5.5.6">
+<h3><span class="header-section-number">5.5.6</span> 固定なの？ランダムなの？<a href="regtech.html#固定なのランダムなの" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Coming Soon!</strong></p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>ほとんどの場合，変数の名前に1をとる条件が表れています．例えば，<span class="math inline">\(married\)</span>というダミー変数は，「結婚していれば1，独身であれば0をとる変数」であると解釈します．<a href="regtech.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p><a href="https://freedomhouse.org/" class="uri">https://freedomhouse.org/</a><a href="regtech.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p><a href="https://www.systemicpeace.org/polity/polity4.htm" class="uri">https://www.systemicpeace.org/polity/polity4.htm</a><a href="regtech.html#fnref8" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="discrete.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
