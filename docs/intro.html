@@ -58,6 +58,15 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1MPZQ5SW5E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1MPZQ5SW5E');
+</script>
 
 
 <style type="text/css">
@@ -379,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-3"><a href="intro.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">5.555</span>) <span class="co"># 丸め</span></span>
 <span id="cb10-4"><a href="intro.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 6</span></span>
 <span id="cb10-5"><a href="intro.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span>()       <span class="co"># 日時</span></span>
-<span id="cb10-6"><a href="intro.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Mon May 30 13:14:28 2022&quot;</span></span></code></pre></div>
+<span id="cb10-6"><a href="intro.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Fri Jun  3 21:18:55 2022&quot;</span></span></code></pre></div>
 <p>自分で関数を定義することもできます．</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1" aria-hidden="true" tabindex="-1"></a>bmi <span class="ot">&lt;-</span> <span class="cf">function</span>(weight, height){</span>
 <span id="cb11-2"><a href="intro.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  index <span class="ot">&lt;-</span> weight <span class="sc">/</span> height<span class="sc">^</span><span class="dv">2</span></span>
